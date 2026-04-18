@@ -7,7 +7,9 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Better Auth sets this cookie on sign-in
-  const session = request.cookies.get("better-auth.session_token")?.value;
+  const session =
+    request.cookies.get("__Secure-better-auth.session_token")?.value ||
+    request.cookies.get("better-auth.session_token")?.value;
 
   const isProtected = PROTECTED.some((p) => pathname.startsWith(p));
   const isAuthOnly = AUTH_ONLY.some((p) => pathname.startsWith(p));
