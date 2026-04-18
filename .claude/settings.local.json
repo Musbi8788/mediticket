@@ -20,7 +20,8 @@
     "additionalDirectories": [
       "C:\\Users\\Musbi Dev\\Documents\\mediticket\\app\\api\\auth\\[...all",
       "C:\\Users\\Musbi Dev\\Documents\\mediticket\\app\\api\\ticket-types",
-      "C:\\Users\\Musbi Dev\\Documents\\mediticket\\app\\api"
+      "C:\\Users\\Musbi Dev\\Documents\\mediticket\\app\\api",
+      "c:\\Users\\Musbi Dev\\Documents\\mediticket\\app\\api"
     ]
   }
 }

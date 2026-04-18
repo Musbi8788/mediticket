@@ -413,7 +413,7 @@ export default function LandingPage() {
         </div>
         <div className="border-t border-gray-800 py-6">
           <p className="text-xs text-center text-gray-500">
-            © 2024 MediTicket Clinical Sanctuary. All rights reserved.
+            © 2026 MediTicket Clinical Sanctuary. All rights reserved.
           </p>
         </div>
       </footer>
