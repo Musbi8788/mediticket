@@ -7,7 +7,8 @@
       "WebFetch(domain:www.prisma.io)",
       "Read(//c/Users/Musbi Dev/Documents/**)",
       "Bash(npx create-next-app@latest mediticket --typescript --tailwind --app --no-src-dir --no-eslint --import-alias \"@/*\")",
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "Bash(npx prisma *)"
     ]
   }
 }
