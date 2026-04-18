@@ -19,7 +19,7 @@ function Field({
   placeholder: string;
   value: string;
   onChange: (v: string) => void;
-  autoComplete?: string;
+  autoComplete?: React.HTMLInputAutoCompleteAttribute;
   icon: React.ReactNode;
 }) {
   return (

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { Input, Button } from "@heroui/react";
 
 interface TicketType {
   id: string;
@@ -305,15 +304,12 @@ export default function TicketTypesPage() {
                 <label className="text-[11px] font-bold tracking-widest text-gray-400 uppercase">
                   Ticket Name
                 </label>
-                <Input
+                <input
                   type="text"
                   placeholder="e.g. Specialty Surgery"
                   value={name}
-                  onValueChange={setName}
-                  classNames={{
-                    inputWrapper: "bg-gray-100 border-0 shadow-none data-[hover=true]:bg-gray-100 group-data-[focus=true]:bg-gray-100",
-                    input: "text-gray-800 placeholder:text-gray-400 text-sm",
-                  }}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full bg-gray-100 rounded-xl px-3 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 outline-none focus:ring-2 focus:ring-[#1a7f8a]/30 transition-all"
                 />
               </div>
 
@@ -322,21 +318,18 @@ export default function TicketTypesPage() {
                 <label className="text-[11px] font-bold tracking-widest text-gray-400 uppercase">
                   Price (GMD)
                 </label>
-                <Input
-                  type="number"
-                  min="0"
-                  step="0.01"
-                  placeholder="0.00"
-                  value={price}
-                  onValueChange={setPrice}
-                  startContent={
-                    <span className="text-sm font-semibold text-gray-400 select-none">D</span>
-                  }
-                  classNames={{
-                    inputWrapper: "bg-gray-100 border-0 shadow-none data-[hover=true]:bg-gray-100 group-data-[focus=true]:bg-gray-100",
-                    input: "text-gray-800 placeholder:text-gray-400 text-sm",
-                  }}
-                />
+                <div className="relative">
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm font-semibold text-gray-400 select-none pointer-events-none">D</span>
+                  <input
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    placeholder="0.00"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                    className="w-full bg-gray-100 rounded-xl pl-7 pr-3 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 outline-none focus:ring-2 focus:ring-[#1a7f8a]/30 transition-all"
+                  />
+                </div>
               </div>
 
               {/* Description */}
@@ -355,13 +348,19 @@ export default function TicketTypesPage() {
 
               {/* Actions */}
               <div className="flex flex-col gap-2 pt-1">
-                <Button
+                <button
                   type="submit"
-                  isLoading={submitting}
-                  className="w-full bg-[#1a7f8a] text-white font-bold rounded-xl h-12 text-sm hover:bg-[#156870] transition-colors"
+                  disabled={submitting}
+                  className="w-full flex items-center justify-center gap-2 bg-[#1a7f8a] text-white font-bold rounded-xl h-12 text-sm hover:bg-[#156870] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                 >
+                  {submitting ? (
+                    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" opacity="0.25" />
+                      <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                    </svg>
+                  ) : null}
                   {editingId ? "Update Ticket Type" : "Initialize Ticket Type"}
-                </Button>
+                </button>
                 {editingId && (
                   <button
                     type="button"
