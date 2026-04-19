@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 interface TicketType {
   id: string;
@@ -57,6 +57,8 @@ export default function TicketTypesPage() {
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
 
+  const formRef = useRef<HTMLDivElement>(null);
+
   const fetchTicketTypes = useCallback(async () => {
     setLoading(true);
     try {
@@ -81,6 +83,10 @@ export default function TicketTypesPage() {
     setError(null);
   }
 
+  function scrollToForm() {
+    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   function startEdit(t: TicketType) {
     setEditingId(t.id);
     setName(t.name);
@@ -88,7 +94,7 @@ export default function TicketTypesPage() {
     setDescription(t.description ?? "");
     setError(null);
     setSuccess(null);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    scrollToForm();
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -153,23 +159,34 @@ export default function TicketTypesPage() {
   return (
     <div className="max-w-6xl mx-auto">
       {/* Page heading */}
-      <div className="mb-7">
-        <p className="text-xs font-semibold tracking-[0.18em] text-[#1a7f8a] uppercase mb-1">
+      <div className="mb-5 md:mb-7">
+        <p className="text-xs font-semibold tracking-wider lg:tracking-[0.18em] text-[#1a7f8a] uppercase mb-1">
           Administration · Management
         </p>
-        <h1 className="text-4xl font-extrabold text-gray-900">Ticket Type Management</h1>
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900">Ticket Type Management</h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-6 items-start">
         {/* ── Left: ticket list ─────────────────────────────── */}
         <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
           {/* Card header */}
-          <div className="flex items-start justify-between px-6 pt-6 pb-4 border-b border-gray-100">
+          <div className="flex items-start justify-between px-4 sm:px-6 pt-5 sm:pt-6 pb-4 border-b border-gray-100">
             <div>
-              <h2 className="text-lg font-bold text-gray-900">Configured Ticket Types</h2>
-              <p className="text-sm text-gray-500 mt-0.5">Review and manage current billing categories</p>
+              <h2 className="text-base sm:text-lg font-bold text-gray-900">Configured Ticket Types</h2>
+              <p className="text-xs sm:text-sm text-gray-500 mt-0.5">Review and manage current billing categories</p>
             </div>
             <div className="flex items-center gap-2">
+              {/* Mobile: "+ Add" shortcut */}
+              <button
+                type="button"
+                onClick={scrollToForm}
+                className="lg:hidden flex items-center gap-1 px-3 h-8 rounded-lg bg-[#1a7f8a] text-white text-xs font-bold transition-colors hover:bg-[#156870]"
+              >
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+                </svg>
+                Add
+              </button>
               <button type="button" title="Filter" className="w-8 h-8 rounded-lg border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 transition-colors">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -183,8 +200,8 @@ export default function TicketTypesPage() {
             </div>
           </div>
 
-          {/* Table head */}
-          <div className="grid grid-cols-[2fr_3fr_1.2fr_80px] gap-4 px-6 py-3 bg-gray-50/60">
+          {/* Table head — desktop only */}
+          <div className="hidden lg:grid grid-cols-[2fr_3fr_1.2fr_80px] gap-4 px-6 py-3 bg-gray-50/60">
             {["Ticket Name", "Description", "Price", "Actions"].map((h) => (
               <p key={h} className="text-[11px] font-bold tracking-wider text-gray-400 uppercase">
                 {h}
@@ -211,53 +228,99 @@ export default function TicketTypesPage() {
                   <path d="M10 12h4" stroke="#d1d5db" strokeWidth="2" strokeLinecap="round" />
                 </svg>
                 <p className="text-sm font-medium">No ticket types yet</p>
-                <p className="text-xs">Use the form on the right to add one.</p>
+                <p className="text-xs">
+                  Use the form{" "}
+                  <span className="lg:hidden">below</span>
+                  <span className="hidden lg:inline">on the right</span>
+                  {" "}to add one.
+                </p>
               </div>
             ) : (
               ticketTypes.map((t, i) => (
-                <div
-                  key={t.id}
-                  className={`grid grid-cols-[2fr_3fr_1.2fr_80px] gap-4 items-center px-6 py-4 hover:bg-gray-50/50 transition-colors ${editingId === t.id ? "bg-[#1a7f8a]/5" : ""}`}
-                >
-                  {/* Name */}
-                  <div className="flex items-center gap-3 min-w-0">
-                    <TicketIcon index={i} />
-                    <span className="text-sm font-semibold text-gray-800 truncate">{t.name}</span>
+                <div key={t.id} className={editingId === t.id ? "bg-[#1a7f8a]/5" : ""}>
+                  {/* Mobile card */}
+                  <div className="lg:hidden px-4 py-3.5 hover:bg-gray-50/50 transition-colors">
+                    <div className="flex items-center gap-3">
+                      <TicketIcon index={i} />
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-semibold text-gray-800 truncate">{t.name}</p>
+                        <p className="text-sm font-bold text-[#1a7f8a]">{formatPrice(t.price)}</p>
+                      </div>
+                      <div className="flex items-center gap-1 flex-shrink-0">
+                        <button
+                          type="button"
+                          title="Edit"
+                          onClick={() => startEdit(t)}
+                          className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:text-[#1a7f8a] hover:bg-[#1a7f8a]/10 transition-colors"
+                        >
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </button>
+                        <button
+                          type="button"
+                          title="Delete"
+                          onClick={() => handleDelete(t.id)}
+                          disabled={deleting === t.id}
+                          className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors disabled:opacity-40"
+                        >
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="3 6 5 6 21 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M10 11v6M14 11v6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                            <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                    {t.description && (
+                      <p className="text-xs text-gray-500 line-clamp-2 mt-1.5 pl-12">{t.description}</p>
+                    )}
                   </div>
 
-                  {/* Description */}
-                  <p className="text-sm text-gray-500 line-clamp-2">{t.description ?? "—"}</p>
+                  {/* Desktop row */}
+                  <div className="hidden lg:grid grid-cols-[2fr_3fr_1.2fr_80px] gap-4 items-center px-6 py-4 hover:bg-gray-50/50 transition-colors">
+                    {/* Name */}
+                    <div className="flex items-center gap-3 min-w-0">
+                      <TicketIcon index={i} />
+                      <span className="text-sm font-semibold text-gray-800 truncate">{t.name}</span>
+                    </div>
 
-                  {/* Price */}
-                  <p className="text-sm font-bold text-[#1a7f8a]">{formatPrice(t.price)}</p>
+                    {/* Description */}
+                    <p className="text-sm text-gray-500 line-clamp-2">{t.description ?? "—"}</p>
 
-                  {/* Actions */}
-                  <div className="flex items-center gap-1">
-                    <button
-                      type="button"
-                      title="Edit"
-                      onClick={() => startEdit(t)}
-                      className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:text-[#1a7f8a] hover:bg-[#1a7f8a]/10 transition-colors"
-                    >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </button>
-                    <button
-                      type="button"
-                      title="Delete"
-                      onClick={() => handleDelete(t.id)}
-                      disabled={deleting === t.id}
-                      className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors disabled:opacity-40"
-                    >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <polyline points="3 6 5 6 21 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        <path d="M10 11v6M14 11v6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                        <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                      </svg>
-                    </button>
+                    {/* Price */}
+                    <p className="text-sm font-bold text-[#1a7f8a]">{formatPrice(t.price)}</p>
+
+                    {/* Actions */}
+                    <div className="flex items-center gap-1">
+                      <button
+                        type="button"
+                        title="Edit"
+                        onClick={() => startEdit(t)}
+                        className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:text-[#1a7f8a] hover:bg-[#1a7f8a]/10 transition-colors"
+                      >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </button>
+                      <button
+                        type="button"
+                        title="Delete"
+                        onClick={() => handleDelete(t.id)}
+                        disabled={deleting === t.id}
+                        className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors disabled:opacity-40"
+                      >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <polyline points="3 6 5 6 21 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                          <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                          <path d="M10 11v6M14 11v6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                          <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))
@@ -266,10 +329,10 @@ export default function TicketTypesPage() {
         </div>
 
         {/* ── Right: create / edit form ──────────────────────── */}
-        <div className="flex flex-col gap-4">
-          <div className="bg-white rounded-2xl shadow-sm p-6">
+        <div ref={formRef} className="flex flex-col gap-4 lg:sticky lg:top-4">
+          <div className="bg-white rounded-2xl shadow-sm p-5 sm:p-6">
             {/* Panel header */}
-            <div className="flex items-start gap-3 mb-6">
+            <div className="flex items-start gap-3 mb-5 sm:mb-6">
               <div className="w-10 h-10 rounded-xl bg-[#1a7f8a]/10 flex items-center justify-center flex-shrink-0">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M2 9a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V9z" stroke="#1a7f8a" strokeWidth="2" />
@@ -401,6 +464,18 @@ export default function TicketTypesPage() {
           </div>
         </div>
       </div>
+
+      {/* Mobile FAB — scroll to form */}
+      <button
+        type="button"
+        onClick={scrollToForm}
+        aria-label="Add ticket type"
+        className="lg:hidden fixed bottom-6 right-6 z-30 w-14 h-14 rounded-full bg-[#1a7f8a] text-white shadow-lg flex items-center justify-center hover:bg-[#156870] transition-colors active:scale-95"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+        </svg>
+      </button>
     </div>
   );
 }

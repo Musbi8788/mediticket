@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geist.variable} h-full`}>
-      <body className="min-h-full">
+      <body className="min-h-full overflow-x-hidden">
         <Providers>{children}</Providers>
       </body>
     </html>

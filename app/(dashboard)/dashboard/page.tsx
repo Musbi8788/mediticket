@@ -65,7 +65,7 @@ export default function DashboardPage() {
         <p className="text-xs font-semibold tracking-[0.18em] text-[#1a7f8a] uppercase mb-1">
           Clinical Oversight
         </p>
-        <h1 className="text-4xl font-extrabold text-gray-900">Administrative Dashboard</h1>
+        <h1 className="text-2xl md:text-4xl font-extrabold text-gray-900">Administrative Dashboard</h1>
       </div>
 
       {/* Stats row */}
@@ -218,9 +218,12 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-[1fr_auto_auto_auto] gap-3 px-2 pb-2 border-b border-gray-100">
+          <div className="grid grid-cols-[1fr_auto_auto] sm:grid-cols-[1fr_auto_auto_auto] gap-3 px-2 pb-2 border-b border-gray-100">
             {["Activity", "Timestamp", "Status", "Amount"].map((col) => (
-              <p key={col} className="text-xs font-semibold text-gray-400 uppercase tracking-wider last:text-right">
+              <p
+                key={col}
+                className={`text-xs font-semibold text-gray-400 uppercase tracking-wider last:text-right ${col === "Timestamp" ? "hidden sm:block" : ""}`}
+              >
                 {col}
               </p>
             ))}
@@ -240,7 +243,7 @@ export default function DashboardPage() {
               stats.recentActivity.map((row, i) => (
                 <div
                   key={row.id}
-                  className="grid grid-cols-[1fr_auto_auto_auto] gap-3 items-center py-3 px-2"
+                  className="grid grid-cols-[1fr_auto_auto] sm:grid-cols-[1fr_auto_auto_auto] gap-3 items-center py-3 px-2"
                 >
                   <div className="flex items-center gap-2.5 min-w-0">
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${ACTIVITY_COLORS[i % ACTIVITY_COLORS.length]}`}>
@@ -252,7 +255,7 @@ export default function DashboardPage() {
                     </div>
                   </div>
 
-                  <p className="text-xs text-gray-500 whitespace-nowrap">{row.time}</p>
+                  <p className="hidden sm:block text-xs text-gray-500 whitespace-nowrap">{row.time}</p>
 
                   <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-md whitespace-nowrap ${statusStyles[row.status] ?? "bg-gray-100 text-gray-600"}`}>
                     {row.status}
