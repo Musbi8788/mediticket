@@ -15,7 +15,7 @@ type Hospital = {
   paymentMethods: PaymentMethod[];
 };
 type ChatMsg = { role: "user" | "assistant"; content: string };
-type Stage = "select-hospital" | "collect-name" | "collect-age" | "symptom-chat" | "complete";
+type Stage = "select-hospital" | "collect-name" | "collect-age" | "collect-phone" | "collect-address" | "symptom-chat" | "complete";
 type BookingModal = { hospital: Hospital; ticket: TicketType };
 
 export default function BookPage() {
@@ -28,6 +28,9 @@ export default function BookPage() {
   const [selectedHospital, setSelectedHospital] = useState<Hospital | null>(null);
   const [patientName, setPatientName] = useState("");
   const [patientAge, setPatientAge] = useState("");
+  const [patientPhone, setPatientPhone] = useState("");
+  const [patientAddress, setPatientAddress] = useState("");
+  const [phoneInput, setPhoneInput] = useState("");
   const [messages, setMessages] = useState<ChatMsg[]>([
     { role: "assistant", content: "Welcome to MediTicket AI! Please select the hospital you would like to consult with:" },
   ]);
@@ -92,6 +95,31 @@ export default function BookPage() {
     setChatInput("");
     setPatientAge(age);
     addMsg("user", age);
+    setStage("collect-phone");
+    setPhoneInput("");
+    setTimeout(() => addMsg("assistant", "What is your WhatsApp phone number? Your number starts with +220 — please enter your 7 digits."), 300);
+  }
+
+  function handlePhoneSubmit() {
+    const digits = phoneInput.trim().replace(/\s/g, "");
+    if (!/^\d{7}$/.test(digits)) {
+      addMsg("assistant", "Please enter exactly 7 digits after +220 (e.g. 7036433).");
+      return;
+    }
+    const full = `+220${digits}`;
+    setPatientPhone(full);
+    setPhoneInput("");
+    addMsg("user", full);
+    setStage("collect-address");
+    setTimeout(() => addMsg("assistant", "What area or town are you from? (e.g. Banjul, Brikama, Serrekunda)"), 300);
+  }
+
+  function handleAddressSubmit() {
+    const addr = chatInput.trim();
+    if (!addr) return;
+    setChatInput("");
+    setPatientAddress(addr);
+    addMsg("user", addr);
     setStage("symptom-chat");
     setTimeout(
       () =>
@@ -135,10 +163,10 @@ export default function BookPage() {
     if (!selectedHospital || !patientName || !patientAge) return;
     setChatLoading(true);
 
-    // User messages: [0]=hospital name, [1]=patient name, [2]=age, [3+]=actual symptoms
+    // User messages: [0]=hospital name, [1]=patient name, [2]=age, [3]=phone, [4]=address, [5+]=actual symptoms
     const allUserMessages = messages.filter((m) => m.role === "user");
     const symptoms = allUserMessages
-      .slice(3)
+      .slice(5)
       .map((m) => m.content)
       .join("; ");
 
@@ -156,6 +184,8 @@ export default function BookPage() {
         body: JSON.stringify({
           patientName,
           patientAge: Number(patientAge),
+          patientPhone: patientPhone || undefined,
+          patientAddress: patientAddress || undefined,
           symptoms,
           chatHistory: clinicalHistory,
           organizationId: selectedHospital.id,
@@ -182,6 +212,8 @@ export default function BookPage() {
   function handleSend() {
     if (stage === "collect-name") return handleNameSubmit();
     if (stage === "collect-age") return handleAgeSubmit();
+    if (stage === "collect-phone") return handlePhoneSubmit();
+    if (stage === "collect-address") return handleAddressSubmit();
     if (stage === "symptom-chat") return handleSymptomChat();
   }
 
@@ -402,19 +434,52 @@ export default function BookPage() {
                 </div>
               )}
 
-              {/* Input — hidden during hospital selection and after complete */}
-              {stage !== "select-hospital" && stage !== "complete" && (
+              {/* Phone input — +220 prefix */}
+              {stage === "collect-phone" && (
+                <div className="px-4 pb-4 flex-shrink-0">
+                  <div className="flex gap-2">
+                    <div className="flex flex-1 bg-gray-100 rounded-full overflow-hidden focus-within:ring-2 focus-within:ring-[#1a9ea8]/30">
+                      <span className="pl-4 pr-1 py-2.5 text-xs font-semibold text-gray-500 flex items-center select-none">+220</span>
+                      <input
+                        type="tel"
+                        value={phoneInput}
+                        onChange={(e) => setPhoneInput(e.target.value.replace(/\D/g, "").slice(0, 7))}
+                        onKeyDown={(e) => { if (e.key === "Enter") handlePhoneSubmit(); }}
+                        placeholder="7 digits"
+                        maxLength={7}
+                        disabled={chatLoading}
+                        className="flex-1 bg-transparent pr-3 py-2.5 text-xs text-gray-800 placeholder-gray-400 outline-none disabled:opacity-50"
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      aria-label="Send phone number"
+                      onClick={handlePhoneSubmit}
+                      disabled={chatLoading || phoneInput.replace(/\D/g, "").length !== 7}
+                      className="w-9 h-9 rounded-full bg-[#1a9ea8] hover:bg-[#157f88] disabled:opacity-40 flex items-center justify-center transition-colors flex-shrink-0"
+                    >
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* Text input — name / age / address / symptoms */}
+              {stage !== "select-hospital" && stage !== "complete" && stage !== "collect-phone" && (
                 <div className="px-4 pb-4 flex-shrink-0">
                   <div className="flex gap-2">
                     <input
                       type={stage === "collect-age" ? "number" : "text"}
                       value={chatInput}
                       onChange={(e) => setChatInput(e.target.value)}
-                      onKeyDown={(e) => e.key === "Enter" && handleSend()}
+                      onKeyDown={(e) => { if (e.key === "Enter") handleSend(); }}
                       placeholder={
-                        stage === "collect-name" ? "Your full name…"
-                        : stage === "collect-age" ? "Your age…"
-                        : "Describe your symptoms…"
+                        stage === "collect-name"    ? "Your full name…"    :
+                        stage === "collect-age"     ? "Your age…"          :
+                        stage === "collect-address" ? "e.g. Banjul, Brikama…" :
+                                                      "Describe your symptoms…"
                       }
                       disabled={chatLoading}
                       className="flex-1 bg-gray-100 rounded-full px-4 py-2.5 text-xs text-gray-800 placeholder-gray-400 outline-none focus:ring-2 focus:ring-[#1a9ea8]/30 disabled:opacity-50"

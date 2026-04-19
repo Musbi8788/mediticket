@@ -20,6 +20,8 @@ export async function GET() {
       id: true,
       patientName: true,
       patientAge: true,
+      patientPhone: true,
+      patientAddress: true,
       symptoms: true,
       chatHistory: true,
       aiSummary: true,

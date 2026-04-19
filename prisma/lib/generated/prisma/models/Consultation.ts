@@ -38,6 +38,8 @@ export type ConsultationMinAggregateOutputType = {
   id: string | null
   patientName: string | null
   patientAge: number | null
+  patientPhone: string | null
+  patientAddress: string | null
   symptoms: string | null
   aiSummary: string | null
   aiRecommendation: string | null
@@ -52,6 +54,8 @@ export type ConsultationMaxAggregateOutputType = {
   id: string | null
   patientName: string | null
   patientAge: number | null
+  patientPhone: string | null
+  patientAddress: string | null
   symptoms: string | null
   aiSummary: string | null
   aiRecommendation: string | null
@@ -66,6 +70,8 @@ export type ConsultationCountAggregateOutputType = {
   id: number
   patientName: number
   patientAge: number
+  patientPhone: number
+  patientAddress: number
   symptoms: number
   chatHistory: number
   aiSummary: number
@@ -91,6 +97,8 @@ export type ConsultationMinAggregateInputType = {
   id?: true
   patientName?: true
   patientAge?: true
+  patientPhone?: true
+  patientAddress?: true
   symptoms?: true
   aiSummary?: true
   aiRecommendation?: true
@@ -105,6 +113,8 @@ export type ConsultationMaxAggregateInputType = {
   id?: true
   patientName?: true
   patientAge?: true
+  patientPhone?: true
+  patientAddress?: true
   symptoms?: true
   aiSummary?: true
   aiRecommendation?: true
@@ -119,6 +129,8 @@ export type ConsultationCountAggregateInputType = {
   id?: true
   patientName?: true
   patientAge?: true
+  patientPhone?: true
+  patientAddress?: true
   symptoms?: true
   chatHistory?: true
   aiSummary?: true
@@ -221,6 +233,8 @@ export type ConsultationGroupByOutputType = {
   id: string
   patientName: string
   patientAge: number
+  patientPhone: string | null
+  patientAddress: string | null
   symptoms: string
   chatHistory: runtime.JsonValue
   aiSummary: string | null
@@ -259,6 +273,8 @@ export type ConsultationWhereInput = {
   id?: Prisma.StringFilter<"Consultation"> | string
   patientName?: Prisma.StringFilter<"Consultation"> | string
   patientAge?: Prisma.IntFilter<"Consultation"> | number
+  patientPhone?: Prisma.StringNullableFilter<"Consultation"> | string | null
+  patientAddress?: Prisma.StringNullableFilter<"Consultation"> | string | null
   symptoms?: Prisma.StringFilter<"Consultation"> | string
   chatHistory?: Prisma.JsonFilter<"Consultation">
   aiSummary?: Prisma.StringNullableFilter<"Consultation"> | string | null
@@ -275,6 +291,8 @@ export type ConsultationOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   patientName?: Prisma.SortOrder
   patientAge?: Prisma.SortOrder
+  patientPhone?: Prisma.SortOrderInput | Prisma.SortOrder
+  patientAddress?: Prisma.SortOrderInput | Prisma.SortOrder
   symptoms?: Prisma.SortOrder
   chatHistory?: Prisma.SortOrder
   aiSummary?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -294,6 +312,8 @@ export type ConsultationWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ConsultationWhereInput | Prisma.ConsultationWhereInput[]
   patientName?: Prisma.StringFilter<"Consultation"> | string
   patientAge?: Prisma.IntFilter<"Consultation"> | number
+  patientPhone?: Prisma.StringNullableFilter<"Consultation"> | string | null
+  patientAddress?: Prisma.StringNullableFilter<"Consultation"> | string | null
   symptoms?: Prisma.StringFilter<"Consultation"> | string
   chatHistory?: Prisma.JsonFilter<"Consultation">
   aiSummary?: Prisma.StringNullableFilter<"Consultation"> | string | null
@@ -310,6 +330,8 @@ export type ConsultationOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   patientName?: Prisma.SortOrder
   patientAge?: Prisma.SortOrder
+  patientPhone?: Prisma.SortOrderInput | Prisma.SortOrder
+  patientAddress?: Prisma.SortOrderInput | Prisma.SortOrder
   symptoms?: Prisma.SortOrder
   chatHistory?: Prisma.SortOrder
   aiSummary?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -333,6 +355,8 @@ export type ConsultationScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Consultation"> | string
   patientName?: Prisma.StringWithAggregatesFilter<"Consultation"> | string
   patientAge?: Prisma.IntWithAggregatesFilter<"Consultation"> | number
+  patientPhone?: Prisma.StringNullableWithAggregatesFilter<"Consultation"> | string | null
+  patientAddress?: Prisma.StringNullableWithAggregatesFilter<"Consultation"> | string | null
   symptoms?: Prisma.StringWithAggregatesFilter<"Consultation"> | string
   chatHistory?: Prisma.JsonWithAggregatesFilter<"Consultation">
   aiSummary?: Prisma.StringNullableWithAggregatesFilter<"Consultation"> | string | null
@@ -348,6 +372,8 @@ export type ConsultationCreateInput = {
   id?: string
   patientName: string
   patientAge: number
+  patientPhone?: string | null
+  patientAddress?: string | null
   symptoms: string
   chatHistory: Prisma.JsonNullValueInput | runtime.InputJsonValue
   aiSummary?: string | null
@@ -363,6 +389,8 @@ export type ConsultationUncheckedCreateInput = {
   id?: string
   patientName: string
   patientAge: number
+  patientPhone?: string | null
+  patientAddress?: string | null
   symptoms: string
   chatHistory: Prisma.JsonNullValueInput | runtime.InputJsonValue
   aiSummary?: string | null
@@ -378,6 +406,8 @@ export type ConsultationUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   patientName?: Prisma.StringFieldUpdateOperationsInput | string
   patientAge?: Prisma.IntFieldUpdateOperationsInput | number
+  patientPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  patientAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   symptoms?: Prisma.StringFieldUpdateOperationsInput | string
   chatHistory?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -393,6 +423,8 @@ export type ConsultationUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   patientName?: Prisma.StringFieldUpdateOperationsInput | string
   patientAge?: Prisma.IntFieldUpdateOperationsInput | number
+  patientPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  patientAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   symptoms?: Prisma.StringFieldUpdateOperationsInput | string
   chatHistory?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -408,6 +440,8 @@ export type ConsultationCreateManyInput = {
   id?: string
   patientName: string
   patientAge: number
+  patientPhone?: string | null
+  patientAddress?: string | null
   symptoms: string
   chatHistory: Prisma.JsonNullValueInput | runtime.InputJsonValue
   aiSummary?: string | null
@@ -423,6 +457,8 @@ export type ConsultationUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   patientName?: Prisma.StringFieldUpdateOperationsInput | string
   patientAge?: Prisma.IntFieldUpdateOperationsInput | number
+  patientPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  patientAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   symptoms?: Prisma.StringFieldUpdateOperationsInput | string
   chatHistory?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -437,6 +473,8 @@ export type ConsultationUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   patientName?: Prisma.StringFieldUpdateOperationsInput | string
   patientAge?: Prisma.IntFieldUpdateOperationsInput | number
+  patientPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  patientAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   symptoms?: Prisma.StringFieldUpdateOperationsInput | string
   chatHistory?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -462,6 +500,8 @@ export type ConsultationCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   patientName?: Prisma.SortOrder
   patientAge?: Prisma.SortOrder
+  patientPhone?: Prisma.SortOrder
+  patientAddress?: Prisma.SortOrder
   symptoms?: Prisma.SortOrder
   chatHistory?: Prisma.SortOrder
   aiSummary?: Prisma.SortOrder
@@ -481,6 +521,8 @@ export type ConsultationMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   patientName?: Prisma.SortOrder
   patientAge?: Prisma.SortOrder
+  patientPhone?: Prisma.SortOrder
+  patientAddress?: Prisma.SortOrder
   symptoms?: Prisma.SortOrder
   aiSummary?: Prisma.SortOrder
   aiRecommendation?: Prisma.SortOrder
@@ -495,6 +537,8 @@ export type ConsultationMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   patientName?: Prisma.SortOrder
   patientAge?: Prisma.SortOrder
+  patientPhone?: Prisma.SortOrder
+  patientAddress?: Prisma.SortOrder
   symptoms?: Prisma.SortOrder
   aiSummary?: Prisma.SortOrder
   aiRecommendation?: Prisma.SortOrder
@@ -571,6 +615,8 @@ export type ConsultationCreateWithoutOrganizationInput = {
   id?: string
   patientName: string
   patientAge: number
+  patientPhone?: string | null
+  patientAddress?: string | null
   symptoms: string
   chatHistory: Prisma.JsonNullValueInput | runtime.InputJsonValue
   aiSummary?: string | null
@@ -585,6 +631,8 @@ export type ConsultationUncheckedCreateWithoutOrganizationInput = {
   id?: string
   patientName: string
   patientAge: number
+  patientPhone?: string | null
+  patientAddress?: string | null
   symptoms: string
   chatHistory: Prisma.JsonNullValueInput | runtime.InputJsonValue
   aiSummary?: string | null
@@ -628,6 +676,8 @@ export type ConsultationScalarWhereInput = {
   id?: Prisma.StringFilter<"Consultation"> | string
   patientName?: Prisma.StringFilter<"Consultation"> | string
   patientAge?: Prisma.IntFilter<"Consultation"> | number
+  patientPhone?: Prisma.StringNullableFilter<"Consultation"> | string | null
+  patientAddress?: Prisma.StringNullableFilter<"Consultation"> | string | null
   symptoms?: Prisma.StringFilter<"Consultation"> | string
   chatHistory?: Prisma.JsonFilter<"Consultation">
   aiSummary?: Prisma.StringNullableFilter<"Consultation"> | string | null
@@ -643,6 +693,8 @@ export type ConsultationCreateManyOrganizationInput = {
   id?: string
   patientName: string
   patientAge: number
+  patientPhone?: string | null
+  patientAddress?: string | null
   symptoms: string
   chatHistory: Prisma.JsonNullValueInput | runtime.InputJsonValue
   aiSummary?: string | null
@@ -657,6 +709,8 @@ export type ConsultationUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   patientName?: Prisma.StringFieldUpdateOperationsInput | string
   patientAge?: Prisma.IntFieldUpdateOperationsInput | number
+  patientPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  patientAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   symptoms?: Prisma.StringFieldUpdateOperationsInput | string
   chatHistory?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -671,6 +725,8 @@ export type ConsultationUncheckedUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   patientName?: Prisma.StringFieldUpdateOperationsInput | string
   patientAge?: Prisma.IntFieldUpdateOperationsInput | number
+  patientPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  patientAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   symptoms?: Prisma.StringFieldUpdateOperationsInput | string
   chatHistory?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -685,6 +741,8 @@ export type ConsultationUncheckedUpdateManyWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   patientName?: Prisma.StringFieldUpdateOperationsInput | string
   patientAge?: Prisma.IntFieldUpdateOperationsInput | number
+  patientPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  patientAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   symptoms?: Prisma.StringFieldUpdateOperationsInput | string
   chatHistory?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -701,6 +759,8 @@ export type ConsultationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   id?: boolean
   patientName?: boolean
   patientAge?: boolean
+  patientPhone?: boolean
+  patientAddress?: boolean
   symptoms?: boolean
   chatHistory?: boolean
   aiSummary?: boolean
@@ -717,6 +777,8 @@ export type ConsultationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   id?: boolean
   patientName?: boolean
   patientAge?: boolean
+  patientPhone?: boolean
+  patientAddress?: boolean
   symptoms?: boolean
   chatHistory?: boolean
   aiSummary?: boolean
@@ -733,6 +795,8 @@ export type ConsultationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   id?: boolean
   patientName?: boolean
   patientAge?: boolean
+  patientPhone?: boolean
+  patientAddress?: boolean
   symptoms?: boolean
   chatHistory?: boolean
   aiSummary?: boolean
@@ -749,6 +813,8 @@ export type ConsultationSelectScalar = {
   id?: boolean
   patientName?: boolean
   patientAge?: boolean
+  patientPhone?: boolean
+  patientAddress?: boolean
   symptoms?: boolean
   chatHistory?: boolean
   aiSummary?: boolean
@@ -760,7 +826,7 @@ export type ConsultationSelectScalar = {
   updatedAt?: boolean
 }
 
-export type ConsultationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "patientName" | "patientAge" | "symptoms" | "chatHistory" | "aiSummary" | "aiRecommendation" | "severity" | "status" | "organizationId" | "createdAt" | "updatedAt", ExtArgs["result"]["consultation"]>
+export type ConsultationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "patientName" | "patientAge" | "patientPhone" | "patientAddress" | "symptoms" | "chatHistory" | "aiSummary" | "aiRecommendation" | "severity" | "status" | "organizationId" | "createdAt" | "updatedAt", ExtArgs["result"]["consultation"]>
 export type ConsultationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.OrganizationDefaultArgs<ExtArgs>
 }
@@ -780,6 +846,8 @@ export type $ConsultationPayload<ExtArgs extends runtime.Types.Extensions.Intern
     id: string
     patientName: string
     patientAge: number
+    patientPhone: string | null
+    patientAddress: string | null
     symptoms: string
     chatHistory: runtime.JsonValue
     aiSummary: string | null
@@ -1216,6 +1284,8 @@ export interface ConsultationFieldRefs {
   readonly id: Prisma.FieldRef<"Consultation", 'String'>
   readonly patientName: Prisma.FieldRef<"Consultation", 'String'>
   readonly patientAge: Prisma.FieldRef<"Consultation", 'Int'>
+  readonly patientPhone: Prisma.FieldRef<"Consultation", 'String'>
+  readonly patientAddress: Prisma.FieldRef<"Consultation", 'String'>
   readonly symptoms: Prisma.FieldRef<"Consultation", 'String'>
   readonly chatHistory: Prisma.FieldRef<"Consultation", 'Json'>
   readonly aiSummary: Prisma.FieldRef<"Consultation", 'String'>

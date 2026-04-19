@@ -168,6 +168,8 @@ model Consultation {
   id               String               @id @default(cuid())
   patientName      String
   patientAge       Int
+  patientPhone     String?
+  patientAddress   String?
   symptoms         String
   chatHistory      Json
   aiSummary        String?

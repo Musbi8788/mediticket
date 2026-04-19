@@ -20,7 +20,7 @@ Rules:
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const { patientName, patientAge, symptoms, chatHistory, organizationId } = body;
+  const { patientName, patientAge, patientPhone, patientAddress, symptoms, chatHistory, organizationId } = body;
 
   if (!patientName || !patientAge || !organizationId) {
     return NextResponse.json({ error: "Missing required fields: patientName, patientAge, organizationId" }, { status: 400 });
@@ -83,6 +83,8 @@ export async function POST(req: NextRequest) {
     data: {
       patientName,
       patientAge: Number(patientAge),
+      patientPhone: patientPhone || null,
+      patientAddress: patientAddress || null,
       symptoms: symptoms || "",
       chatHistory,
       aiSummary: aiSummary || null,

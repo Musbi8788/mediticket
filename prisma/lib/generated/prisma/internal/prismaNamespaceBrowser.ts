@@ -204,6 +204,8 @@ export const ConsultationScalarFieldEnum = {
   id: 'id',
   patientName: 'patientName',
   patientAge: 'patientAge',
+  patientPhone: 'patientPhone',
+  patientAddress: 'patientAddress',
   symptoms: 'symptoms',
   chatHistory: 'chatHistory',
   aiSummary: 'aiSummary',
