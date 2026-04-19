@@ -57,3 +57,8 @@ export type PaymentMethod = Prisma.PaymentMethodModel
  * 
  */
 export type TicketPurchase = Prisma.TicketPurchaseModel
+/**
+ * Model Consultation
+ * 
+ */
+export type Consultation = Prisma.ConsultationModel

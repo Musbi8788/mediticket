@@ -210,6 +210,7 @@ export type OrganizationWhereInput = {
   ticketTypes?: Prisma.TicketTypeListRelationFilter
   paymentMethods?: Prisma.PaymentMethodListRelationFilter
   purchases?: Prisma.TicketPurchaseListRelationFilter
+  consultations?: Prisma.ConsultationListRelationFilter
 }
 
 export type OrganizationOrderByWithRelationInput = {
@@ -225,6 +226,7 @@ export type OrganizationOrderByWithRelationInput = {
   ticketTypes?: Prisma.TicketTypeOrderByRelationAggregateInput
   paymentMethods?: Prisma.PaymentMethodOrderByRelationAggregateInput
   purchases?: Prisma.TicketPurchaseOrderByRelationAggregateInput
+  consultations?: Prisma.ConsultationOrderByRelationAggregateInput
 }
 
 export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
@@ -243,6 +245,7 @@ export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
   ticketTypes?: Prisma.TicketTypeListRelationFilter
   paymentMethods?: Prisma.PaymentMethodListRelationFilter
   purchases?: Prisma.TicketPurchaseListRelationFilter
+  consultations?: Prisma.ConsultationListRelationFilter
 }, "id" | "name" | "email">
 
 export type OrganizationOrderByWithAggregationInput = {
@@ -286,6 +289,7 @@ export type OrganizationCreateInput = {
   ticketTypes?: Prisma.TicketTypeCreateNestedManyWithoutOrganizationInput
   paymentMethods?: Prisma.PaymentMethodCreateNestedManyWithoutOrganizationInput
   purchases?: Prisma.TicketPurchaseCreateNestedManyWithoutOrganizationInput
+  consultations?: Prisma.ConsultationCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateInput = {
@@ -301,6 +305,7 @@ export type OrganizationUncheckedCreateInput = {
   ticketTypes?: Prisma.TicketTypeUncheckedCreateNestedManyWithoutOrganizationInput
   paymentMethods?: Prisma.PaymentMethodUncheckedCreateNestedManyWithoutOrganizationInput
   purchases?: Prisma.TicketPurchaseUncheckedCreateNestedManyWithoutOrganizationInput
+  consultations?: Prisma.ConsultationUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUpdateInput = {
@@ -316,6 +321,7 @@ export type OrganizationUpdateInput = {
   ticketTypes?: Prisma.TicketTypeUpdateManyWithoutOrganizationNestedInput
   paymentMethods?: Prisma.PaymentMethodUpdateManyWithoutOrganizationNestedInput
   purchases?: Prisma.TicketPurchaseUpdateManyWithoutOrganizationNestedInput
+  consultations?: Prisma.ConsultationUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateInput = {
@@ -331,6 +337,7 @@ export type OrganizationUncheckedUpdateInput = {
   ticketTypes?: Prisma.TicketTypeUncheckedUpdateManyWithoutOrganizationNestedInput
   paymentMethods?: Prisma.PaymentMethodUncheckedUpdateManyWithoutOrganizationNestedInput
   purchases?: Prisma.TicketPurchaseUncheckedUpdateManyWithoutOrganizationNestedInput
+  consultations?: Prisma.ConsultationUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateManyInput = {
@@ -467,6 +474,20 @@ export type OrganizationUpdateOneRequiredWithoutPurchasesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutPurchasesInput, Prisma.OrganizationUpdateWithoutPurchasesInput>, Prisma.OrganizationUncheckedUpdateWithoutPurchasesInput>
 }
 
+export type OrganizationCreateNestedOneWithoutConsultationsInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutConsultationsInput, Prisma.OrganizationUncheckedCreateWithoutConsultationsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutConsultationsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+}
+
+export type OrganizationUpdateOneRequiredWithoutConsultationsNestedInput = {
+  create?: Prisma.XOR<Prisma.OrganizationCreateWithoutConsultationsInput, Prisma.OrganizationUncheckedCreateWithoutConsultationsInput>
+  connectOrCreate?: Prisma.OrganizationCreateOrConnectWithoutConsultationsInput
+  upsert?: Prisma.OrganizationUpsertWithoutConsultationsInput
+  connect?: Prisma.OrganizationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrganizationUpdateToOneWithWhereWithoutConsultationsInput, Prisma.OrganizationUpdateWithoutConsultationsInput>, Prisma.OrganizationUncheckedUpdateWithoutConsultationsInput>
+}
+
 export type OrganizationCreateWithoutUsersInput = {
   id?: string
   name: string
@@ -479,6 +500,7 @@ export type OrganizationCreateWithoutUsersInput = {
   ticketTypes?: Prisma.TicketTypeCreateNestedManyWithoutOrganizationInput
   paymentMethods?: Prisma.PaymentMethodCreateNestedManyWithoutOrganizationInput
   purchases?: Prisma.TicketPurchaseCreateNestedManyWithoutOrganizationInput
+  consultations?: Prisma.ConsultationCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutUsersInput = {
@@ -493,6 +515,7 @@ export type OrganizationUncheckedCreateWithoutUsersInput = {
   ticketTypes?: Prisma.TicketTypeUncheckedCreateNestedManyWithoutOrganizationInput
   paymentMethods?: Prisma.PaymentMethodUncheckedCreateNestedManyWithoutOrganizationInput
   purchases?: Prisma.TicketPurchaseUncheckedCreateNestedManyWithoutOrganizationInput
+  consultations?: Prisma.ConsultationUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutUsersInput = {
@@ -523,6 +546,7 @@ export type OrganizationUpdateWithoutUsersInput = {
   ticketTypes?: Prisma.TicketTypeUpdateManyWithoutOrganizationNestedInput
   paymentMethods?: Prisma.PaymentMethodUpdateManyWithoutOrganizationNestedInput
   purchases?: Prisma.TicketPurchaseUpdateManyWithoutOrganizationNestedInput
+  consultations?: Prisma.ConsultationUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutUsersInput = {
@@ -537,6 +561,7 @@ export type OrganizationUncheckedUpdateWithoutUsersInput = {
   ticketTypes?: Prisma.TicketTypeUncheckedUpdateManyWithoutOrganizationNestedInput
   paymentMethods?: Prisma.PaymentMethodUncheckedUpdateManyWithoutOrganizationNestedInput
   purchases?: Prisma.TicketPurchaseUncheckedUpdateManyWithoutOrganizationNestedInput
+  consultations?: Prisma.ConsultationUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutTicketTypesInput = {
@@ -551,6 +576,7 @@ export type OrganizationCreateWithoutTicketTypesInput = {
   users?: Prisma.UserCreateNestedManyWithoutOrganizationInput
   paymentMethods?: Prisma.PaymentMethodCreateNestedManyWithoutOrganizationInput
   purchases?: Prisma.TicketPurchaseCreateNestedManyWithoutOrganizationInput
+  consultations?: Prisma.ConsultationCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutTicketTypesInput = {
@@ -565,6 +591,7 @@ export type OrganizationUncheckedCreateWithoutTicketTypesInput = {
   users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganizationInput
   paymentMethods?: Prisma.PaymentMethodUncheckedCreateNestedManyWithoutOrganizationInput
   purchases?: Prisma.TicketPurchaseUncheckedCreateNestedManyWithoutOrganizationInput
+  consultations?: Prisma.ConsultationUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutTicketTypesInput = {
@@ -595,6 +622,7 @@ export type OrganizationUpdateWithoutTicketTypesInput = {
   users?: Prisma.UserUpdateManyWithoutOrganizationNestedInput
   paymentMethods?: Prisma.PaymentMethodUpdateManyWithoutOrganizationNestedInput
   purchases?: Prisma.TicketPurchaseUpdateManyWithoutOrganizationNestedInput
+  consultations?: Prisma.ConsultationUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutTicketTypesInput = {
@@ -609,6 +637,7 @@ export type OrganizationUncheckedUpdateWithoutTicketTypesInput = {
   users?: Prisma.UserUncheckedUpdateManyWithoutOrganizationNestedInput
   paymentMethods?: Prisma.PaymentMethodUncheckedUpdateManyWithoutOrganizationNestedInput
   purchases?: Prisma.TicketPurchaseUncheckedUpdateManyWithoutOrganizationNestedInput
+  consultations?: Prisma.ConsultationUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutPaymentMethodsInput = {
@@ -623,6 +652,7 @@ export type OrganizationCreateWithoutPaymentMethodsInput = {
   users?: Prisma.UserCreateNestedManyWithoutOrganizationInput
   ticketTypes?: Prisma.TicketTypeCreateNestedManyWithoutOrganizationInput
   purchases?: Prisma.TicketPurchaseCreateNestedManyWithoutOrganizationInput
+  consultations?: Prisma.ConsultationCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutPaymentMethodsInput = {
@@ -637,6 +667,7 @@ export type OrganizationUncheckedCreateWithoutPaymentMethodsInput = {
   users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganizationInput
   ticketTypes?: Prisma.TicketTypeUncheckedCreateNestedManyWithoutOrganizationInput
   purchases?: Prisma.TicketPurchaseUncheckedCreateNestedManyWithoutOrganizationInput
+  consultations?: Prisma.ConsultationUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutPaymentMethodsInput = {
@@ -667,6 +698,7 @@ export type OrganizationUpdateWithoutPaymentMethodsInput = {
   users?: Prisma.UserUpdateManyWithoutOrganizationNestedInput
   ticketTypes?: Prisma.TicketTypeUpdateManyWithoutOrganizationNestedInput
   purchases?: Prisma.TicketPurchaseUpdateManyWithoutOrganizationNestedInput
+  consultations?: Prisma.ConsultationUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutPaymentMethodsInput = {
@@ -681,6 +713,7 @@ export type OrganizationUncheckedUpdateWithoutPaymentMethodsInput = {
   users?: Prisma.UserUncheckedUpdateManyWithoutOrganizationNestedInput
   ticketTypes?: Prisma.TicketTypeUncheckedUpdateManyWithoutOrganizationNestedInput
   purchases?: Prisma.TicketPurchaseUncheckedUpdateManyWithoutOrganizationNestedInput
+  consultations?: Prisma.ConsultationUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationCreateWithoutPurchasesInput = {
@@ -695,6 +728,7 @@ export type OrganizationCreateWithoutPurchasesInput = {
   users?: Prisma.UserCreateNestedManyWithoutOrganizationInput
   ticketTypes?: Prisma.TicketTypeCreateNestedManyWithoutOrganizationInput
   paymentMethods?: Prisma.PaymentMethodCreateNestedManyWithoutOrganizationInput
+  consultations?: Prisma.ConsultationCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationUncheckedCreateWithoutPurchasesInput = {
@@ -709,6 +743,7 @@ export type OrganizationUncheckedCreateWithoutPurchasesInput = {
   users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganizationInput
   ticketTypes?: Prisma.TicketTypeUncheckedCreateNestedManyWithoutOrganizationInput
   paymentMethods?: Prisma.PaymentMethodUncheckedCreateNestedManyWithoutOrganizationInput
+  consultations?: Prisma.ConsultationUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type OrganizationCreateOrConnectWithoutPurchasesInput = {
@@ -739,6 +774,7 @@ export type OrganizationUpdateWithoutPurchasesInput = {
   users?: Prisma.UserUpdateManyWithoutOrganizationNestedInput
   ticketTypes?: Prisma.TicketTypeUpdateManyWithoutOrganizationNestedInput
   paymentMethods?: Prisma.PaymentMethodUpdateManyWithoutOrganizationNestedInput
+  consultations?: Prisma.ConsultationUpdateManyWithoutOrganizationNestedInput
 }
 
 export type OrganizationUncheckedUpdateWithoutPurchasesInput = {
@@ -753,6 +789,83 @@ export type OrganizationUncheckedUpdateWithoutPurchasesInput = {
   users?: Prisma.UserUncheckedUpdateManyWithoutOrganizationNestedInput
   ticketTypes?: Prisma.TicketTypeUncheckedUpdateManyWithoutOrganizationNestedInput
   paymentMethods?: Prisma.PaymentMethodUncheckedUpdateManyWithoutOrganizationNestedInput
+  consultations?: Prisma.ConsultationUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationCreateWithoutConsultationsInput = {
+  id?: string
+  name: string
+  email: string
+  phone: string
+  address: string
+  logo?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutOrganizationInput
+  ticketTypes?: Prisma.TicketTypeCreateNestedManyWithoutOrganizationInput
+  paymentMethods?: Prisma.PaymentMethodCreateNestedManyWithoutOrganizationInput
+  purchases?: Prisma.TicketPurchaseCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationUncheckedCreateWithoutConsultationsInput = {
+  id?: string
+  name: string
+  email: string
+  phone: string
+  address: string
+  logo?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutOrganizationInput
+  ticketTypes?: Prisma.TicketTypeUncheckedCreateNestedManyWithoutOrganizationInput
+  paymentMethods?: Prisma.PaymentMethodUncheckedCreateNestedManyWithoutOrganizationInput
+  purchases?: Prisma.TicketPurchaseUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type OrganizationCreateOrConnectWithoutConsultationsInput = {
+  where: Prisma.OrganizationWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutConsultationsInput, Prisma.OrganizationUncheckedCreateWithoutConsultationsInput>
+}
+
+export type OrganizationUpsertWithoutConsultationsInput = {
+  update: Prisma.XOR<Prisma.OrganizationUpdateWithoutConsultationsInput, Prisma.OrganizationUncheckedUpdateWithoutConsultationsInput>
+  create: Prisma.XOR<Prisma.OrganizationCreateWithoutConsultationsInput, Prisma.OrganizationUncheckedCreateWithoutConsultationsInput>
+  where?: Prisma.OrganizationWhereInput
+}
+
+export type OrganizationUpdateToOneWithWhereWithoutConsultationsInput = {
+  where?: Prisma.OrganizationWhereInput
+  data: Prisma.XOR<Prisma.OrganizationUpdateWithoutConsultationsInput, Prisma.OrganizationUncheckedUpdateWithoutConsultationsInput>
+}
+
+export type OrganizationUpdateWithoutConsultationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutOrganizationNestedInput
+  ticketTypes?: Prisma.TicketTypeUpdateManyWithoutOrganizationNestedInput
+  paymentMethods?: Prisma.PaymentMethodUpdateManyWithoutOrganizationNestedInput
+  purchases?: Prisma.TicketPurchaseUpdateManyWithoutOrganizationNestedInput
+}
+
+export type OrganizationUncheckedUpdateWithoutConsultationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutOrganizationNestedInput
+  ticketTypes?: Prisma.TicketTypeUncheckedUpdateManyWithoutOrganizationNestedInput
+  paymentMethods?: Prisma.PaymentMethodUncheckedUpdateManyWithoutOrganizationNestedInput
+  purchases?: Prisma.TicketPurchaseUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 
@@ -765,6 +878,7 @@ export type OrganizationCountOutputType = {
   ticketTypes: number
   paymentMethods: number
   purchases: number
+  consultations: number
 }
 
 export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -772,6 +886,7 @@ export type OrganizationCountOutputTypeSelect<ExtArgs extends runtime.Types.Exte
   ticketTypes?: boolean | OrganizationCountOutputTypeCountTicketTypesArgs
   paymentMethods?: boolean | OrganizationCountOutputTypeCountPaymentMethodsArgs
   purchases?: boolean | OrganizationCountOutputTypeCountPurchasesArgs
+  consultations?: boolean | OrganizationCountOutputTypeCountConsultationsArgs
 }
 
 /**
@@ -812,6 +927,13 @@ export type OrganizationCountOutputTypeCountPurchasesArgs<ExtArgs extends runtim
   where?: Prisma.TicketPurchaseWhereInput
 }
 
+/**
+ * OrganizationCountOutputType without action
+ */
+export type OrganizationCountOutputTypeCountConsultationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ConsultationWhereInput
+}
+
 
 export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -826,6 +948,7 @@ export type OrganizationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   ticketTypes?: boolean | Prisma.Organization$ticketTypesArgs<ExtArgs>
   paymentMethods?: boolean | Prisma.Organization$paymentMethodsArgs<ExtArgs>
   purchases?: boolean | Prisma.Organization$purchasesArgs<ExtArgs>
+  consultations?: boolean | Prisma.Organization$consultationsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organization"]>
 
@@ -868,6 +991,7 @@ export type OrganizationInclude<ExtArgs extends runtime.Types.Extensions.Interna
   ticketTypes?: boolean | Prisma.Organization$ticketTypesArgs<ExtArgs>
   paymentMethods?: boolean | Prisma.Organization$paymentMethodsArgs<ExtArgs>
   purchases?: boolean | Prisma.Organization$purchasesArgs<ExtArgs>
+  consultations?: boolean | Prisma.Organization$consultationsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OrganizationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -880,6 +1004,7 @@ export type $OrganizationPayload<ExtArgs extends runtime.Types.Extensions.Intern
     ticketTypes: Prisma.$TicketTypePayload<ExtArgs>[]
     paymentMethods: Prisma.$PaymentMethodPayload<ExtArgs>[]
     purchases: Prisma.$TicketPurchasePayload<ExtArgs>[]
+    consultations: Prisma.$ConsultationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1288,6 +1413,7 @@ export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends run
   ticketTypes<T extends Prisma.Organization$ticketTypesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$ticketTypesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TicketTypePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   paymentMethods<T extends Prisma.Organization$paymentMethodsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$paymentMethodsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentMethodPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   purchases<T extends Prisma.Organization$purchasesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$purchasesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TicketPurchasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  consultations<T extends Prisma.Organization$consultationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Organization$consultationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ConsultationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1811,6 +1937,30 @@ export type Organization$purchasesArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.TicketPurchaseScalarFieldEnum | Prisma.TicketPurchaseScalarFieldEnum[]
+}
+
+/**
+ * Organization.consultations
+ */
+export type Organization$consultationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Consultation
+   */
+  select?: Prisma.ConsultationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Consultation
+   */
+  omit?: Prisma.ConsultationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ConsultationInclude<ExtArgs> | null
+  where?: Prisma.ConsultationWhereInput
+  orderBy?: Prisma.ConsultationOrderByWithRelationInput | Prisma.ConsultationOrderByWithRelationInput[]
+  cursor?: Prisma.ConsultationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ConsultationScalarFieldEnum | Prisma.ConsultationScalarFieldEnum[]
 }
 
 /**
