@@ -135,11 +135,19 @@ export default function BookPage() {
     if (!selectedHospital || !patientName || !patientAge) return;
     setChatLoading(true);
 
-    const userMessages = messages.filter((m) => m.role === "user" && !["yes", "ok", "sure"].includes(m.content.toLowerCase()));
-    const symptoms = userMessages
-      .slice(2)
+    // User messages: [0]=hospital name, [1]=patient name, [2]=age, [3+]=actual symptoms
+    const allUserMessages = messages.filter((m) => m.role === "user");
+    const symptoms = allUserMessages
+      .slice(3)
       .map((m) => m.content)
       .join("; ");
+
+    // Only send the symptom conversation to the hospital (skip the hospital/name/age setup)
+    // Find the index where symptom chat begins (after the "Thank you" assistant message)
+    const symptomStartIdx = messages.findIndex(
+      (m) => m.role === "assistant" && m.content.includes("Please describe how you're feeling")
+    );
+    const clinicalHistory = symptomStartIdx >= 0 ? messages.slice(symptomStartIdx) : messages;
 
     try {
       const res = await fetch("/api/public/consultations", {
@@ -149,7 +157,7 @@ export default function BookPage() {
           patientName,
           patientAge: Number(patientAge),
           symptoms,
-          chatHistory: messages,
+          chatHistory: clinicalHistory,
           organizationId: selectedHospital.id,
         }),
       });

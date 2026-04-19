@@ -22,12 +22,15 @@ export async function POST(req: NextRequest) {
   const body = await req.json();
   const { patientName, patientAge, symptoms, chatHistory, organizationId } = body;
 
-  if (!patientName || !patientAge || !organizationId || !Array.isArray(chatHistory)) {
-    return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+  if (!patientName || !patientAge || !organizationId) {
+    return NextResponse.json({ error: "Missing required fields: patientName, patientAge, organizationId" }, { status: 400 });
+  }
+  if (!Array.isArray(chatHistory)) {
+    return NextResponse.json({ error: "chatHistory must be an array" }, { status: 400 });
   }
 
   const org = await prisma.organization.findUnique({ where: { id: organizationId }, select: { id: true } });
-  if (!org) return NextResponse.json({ error: "Hospital not found" }, { status: 404 });
+  if (!org) return NextResponse.json({ error: `Hospital not found with id: ${organizationId}` }, { status: 404 });
 
   const apiKey = process.env.OPEN_ROUTER_API_KEY;
   let aiSummary = "";
@@ -42,6 +45,7 @@ export async function POST(req: NextRequest) {
 
       const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
         method: "POST",
+        signal: AbortSignal.timeout(20000),
         headers: {
           Authorization: `Bearer ${apiKey}`,
           "Content-Type": "application/json",
@@ -69,7 +73,8 @@ export async function POST(req: NextRequest) {
         if (sumMatch) aiSummary = sumMatch[1].trim();
         if (recMatch) aiRecommendation = recMatch[1].trim();
       }
-    } catch {
+    } catch (err) {
+      console.error("AI summarisation failed:", err);
       // fall through — save without AI summary
     }
   }
