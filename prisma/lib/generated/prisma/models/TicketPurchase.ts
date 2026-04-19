@@ -47,6 +47,7 @@ export type TicketPurchaseMinAggregateOutputType = {
   ticketTypeId: string | null
   paymentMethodId: string | null
   organizationId: string | null
+  aiSummary: string | null
   purchasedAt: Date | null
   updatedAt: Date | null
 }
@@ -64,6 +65,7 @@ export type TicketPurchaseMaxAggregateOutputType = {
   ticketTypeId: string | null
   paymentMethodId: string | null
   organizationId: string | null
+  aiSummary: string | null
   purchasedAt: Date | null
   updatedAt: Date | null
 }
@@ -81,6 +83,7 @@ export type TicketPurchaseCountAggregateOutputType = {
   ticketTypeId: number
   paymentMethodId: number
   organizationId: number
+  aiSummary: number
   purchasedAt: number
   updatedAt: number
   _all: number
@@ -108,6 +111,7 @@ export type TicketPurchaseMinAggregateInputType = {
   ticketTypeId?: true
   paymentMethodId?: true
   organizationId?: true
+  aiSummary?: true
   purchasedAt?: true
   updatedAt?: true
 }
@@ -125,6 +129,7 @@ export type TicketPurchaseMaxAggregateInputType = {
   ticketTypeId?: true
   paymentMethodId?: true
   organizationId?: true
+  aiSummary?: true
   purchasedAt?: true
   updatedAt?: true
 }
@@ -142,6 +147,7 @@ export type TicketPurchaseCountAggregateInputType = {
   ticketTypeId?: true
   paymentMethodId?: true
   organizationId?: true
+  aiSummary?: true
   purchasedAt?: true
   updatedAt?: true
   _all?: true
@@ -246,6 +252,7 @@ export type TicketPurchaseGroupByOutputType = {
   ticketTypeId: string
   paymentMethodId: string | null
   organizationId: string
+  aiSummary: string | null
   purchasedAt: Date
   updatedAt: Date
   _count: TicketPurchaseCountAggregateOutputType | null
@@ -286,6 +293,7 @@ export type TicketPurchaseWhereInput = {
   ticketTypeId?: Prisma.StringFilter<"TicketPurchase"> | string
   paymentMethodId?: Prisma.StringNullableFilter<"TicketPurchase"> | string | null
   organizationId?: Prisma.StringFilter<"TicketPurchase"> | string
+  aiSummary?: Prisma.StringNullableFilter<"TicketPurchase"> | string | null
   purchasedAt?: Prisma.DateTimeFilter<"TicketPurchase"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TicketPurchase"> | Date | string
   ticketType?: Prisma.XOR<Prisma.TicketTypeScalarRelationFilter, Prisma.TicketTypeWhereInput>
@@ -306,6 +314,7 @@ export type TicketPurchaseOrderByWithRelationInput = {
   ticketTypeId?: Prisma.SortOrder
   paymentMethodId?: Prisma.SortOrderInput | Prisma.SortOrder
   organizationId?: Prisma.SortOrder
+  aiSummary?: Prisma.SortOrderInput | Prisma.SortOrder
   purchasedAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   ticketType?: Prisma.TicketTypeOrderByWithRelationInput
@@ -329,6 +338,7 @@ export type TicketPurchaseWhereUniqueInput = Prisma.AtLeast<{
   ticketTypeId?: Prisma.StringFilter<"TicketPurchase"> | string
   paymentMethodId?: Prisma.StringNullableFilter<"TicketPurchase"> | string | null
   organizationId?: Prisma.StringFilter<"TicketPurchase"> | string
+  aiSummary?: Prisma.StringNullableFilter<"TicketPurchase"> | string | null
   purchasedAt?: Prisma.DateTimeFilter<"TicketPurchase"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TicketPurchase"> | Date | string
   ticketType?: Prisma.XOR<Prisma.TicketTypeScalarRelationFilter, Prisma.TicketTypeWhereInput>
@@ -349,6 +359,7 @@ export type TicketPurchaseOrderByWithAggregationInput = {
   ticketTypeId?: Prisma.SortOrder
   paymentMethodId?: Prisma.SortOrderInput | Prisma.SortOrder
   organizationId?: Prisma.SortOrder
+  aiSummary?: Prisma.SortOrderInput | Prisma.SortOrder
   purchasedAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.TicketPurchaseCountOrderByAggregateInput
@@ -374,6 +385,7 @@ export type TicketPurchaseScalarWhereWithAggregatesInput = {
   ticketTypeId?: Prisma.StringWithAggregatesFilter<"TicketPurchase"> | string
   paymentMethodId?: Prisma.StringNullableWithAggregatesFilter<"TicketPurchase"> | string | null
   organizationId?: Prisma.StringWithAggregatesFilter<"TicketPurchase"> | string
+  aiSummary?: Prisma.StringNullableWithAggregatesFilter<"TicketPurchase"> | string | null
   purchasedAt?: Prisma.DateTimeWithAggregatesFilter<"TicketPurchase"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"TicketPurchase"> | Date | string
 }
@@ -388,6 +400,7 @@ export type TicketPurchaseCreateInput = {
   transactionRef?: string | null
   notes?: string | null
   source?: $Enums.PurchaseSource
+  aiSummary?: string | null
   purchasedAt?: Date | string
   updatedAt?: Date | string
   ticketType: Prisma.TicketTypeCreateNestedOneWithoutPurchasesInput
@@ -408,6 +421,7 @@ export type TicketPurchaseUncheckedCreateInput = {
   ticketTypeId: string
   paymentMethodId?: string | null
   organizationId: string
+  aiSummary?: string | null
   purchasedAt?: Date | string
   updatedAt?: Date | string
 }
@@ -422,6 +436,7 @@ export type TicketPurchaseUpdateInput = {
   transactionRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   source?: Prisma.EnumPurchaseSourceFieldUpdateOperationsInput | $Enums.PurchaseSource
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ticketType?: Prisma.TicketTypeUpdateOneRequiredWithoutPurchasesNestedInput
@@ -442,6 +457,7 @@ export type TicketPurchaseUncheckedUpdateInput = {
   ticketTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethodId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -459,6 +475,7 @@ export type TicketPurchaseCreateManyInput = {
   ticketTypeId: string
   paymentMethodId?: string | null
   organizationId: string
+  aiSummary?: string | null
   purchasedAt?: Date | string
   updatedAt?: Date | string
 }
@@ -473,6 +490,7 @@ export type TicketPurchaseUpdateManyMutationInput = {
   transactionRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   source?: Prisma.EnumPurchaseSourceFieldUpdateOperationsInput | $Enums.PurchaseSource
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -490,6 +508,7 @@ export type TicketPurchaseUncheckedUpdateManyInput = {
   ticketTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethodId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -517,6 +536,7 @@ export type TicketPurchaseCountOrderByAggregateInput = {
   ticketTypeId?: Prisma.SortOrder
   paymentMethodId?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
+  aiSummary?: Prisma.SortOrder
   purchasedAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -538,6 +558,7 @@ export type TicketPurchaseMaxOrderByAggregateInput = {
   ticketTypeId?: Prisma.SortOrder
   paymentMethodId?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
+  aiSummary?: Prisma.SortOrder
   purchasedAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -555,6 +576,7 @@ export type TicketPurchaseMinOrderByAggregateInput = {
   ticketTypeId?: Prisma.SortOrder
   paymentMethodId?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
+  aiSummary?: Prisma.SortOrder
   purchasedAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -707,6 +729,7 @@ export type TicketPurchaseCreateWithoutOrganizationInput = {
   transactionRef?: string | null
   notes?: string | null
   source?: $Enums.PurchaseSource
+  aiSummary?: string | null
   purchasedAt?: Date | string
   updatedAt?: Date | string
   ticketType: Prisma.TicketTypeCreateNestedOneWithoutPurchasesInput
@@ -725,6 +748,7 @@ export type TicketPurchaseUncheckedCreateWithoutOrganizationInput = {
   source?: $Enums.PurchaseSource
   ticketTypeId: string
   paymentMethodId?: string | null
+  aiSummary?: string | null
   purchasedAt?: Date | string
   updatedAt?: Date | string
 }
@@ -771,6 +795,7 @@ export type TicketPurchaseScalarWhereInput = {
   ticketTypeId?: Prisma.StringFilter<"TicketPurchase"> | string
   paymentMethodId?: Prisma.StringNullableFilter<"TicketPurchase"> | string | null
   organizationId?: Prisma.StringFilter<"TicketPurchase"> | string
+  aiSummary?: Prisma.StringNullableFilter<"TicketPurchase"> | string | null
   purchasedAt?: Prisma.DateTimeFilter<"TicketPurchase"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TicketPurchase"> | Date | string
 }
@@ -785,6 +810,7 @@ export type TicketPurchaseCreateWithoutTicketTypeInput = {
   transactionRef?: string | null
   notes?: string | null
   source?: $Enums.PurchaseSource
+  aiSummary?: string | null
   purchasedAt?: Date | string
   updatedAt?: Date | string
   paymentMethod?: Prisma.PaymentMethodCreateNestedOneWithoutPurchasesInput
@@ -803,6 +829,7 @@ export type TicketPurchaseUncheckedCreateWithoutTicketTypeInput = {
   source?: $Enums.PurchaseSource
   paymentMethodId?: string | null
   organizationId: string
+  aiSummary?: string | null
   purchasedAt?: Date | string
   updatedAt?: Date | string
 }
@@ -843,6 +870,7 @@ export type TicketPurchaseCreateWithoutPaymentMethodInput = {
   transactionRef?: string | null
   notes?: string | null
   source?: $Enums.PurchaseSource
+  aiSummary?: string | null
   purchasedAt?: Date | string
   updatedAt?: Date | string
   ticketType: Prisma.TicketTypeCreateNestedOneWithoutPurchasesInput
@@ -861,6 +889,7 @@ export type TicketPurchaseUncheckedCreateWithoutPaymentMethodInput = {
   source?: $Enums.PurchaseSource
   ticketTypeId: string
   organizationId: string
+  aiSummary?: string | null
   purchasedAt?: Date | string
   updatedAt?: Date | string
 }
@@ -903,6 +932,7 @@ export type TicketPurchaseCreateManyOrganizationInput = {
   source?: $Enums.PurchaseSource
   ticketTypeId: string
   paymentMethodId?: string | null
+  aiSummary?: string | null
   purchasedAt?: Date | string
   updatedAt?: Date | string
 }
@@ -917,6 +947,7 @@ export type TicketPurchaseUpdateWithoutOrganizationInput = {
   transactionRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   source?: Prisma.EnumPurchaseSourceFieldUpdateOperationsInput | $Enums.PurchaseSource
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ticketType?: Prisma.TicketTypeUpdateOneRequiredWithoutPurchasesNestedInput
@@ -935,6 +966,7 @@ export type TicketPurchaseUncheckedUpdateWithoutOrganizationInput = {
   source?: Prisma.EnumPurchaseSourceFieldUpdateOperationsInput | $Enums.PurchaseSource
   ticketTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethodId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -951,6 +983,7 @@ export type TicketPurchaseUncheckedUpdateManyWithoutOrganizationInput = {
   source?: Prisma.EnumPurchaseSourceFieldUpdateOperationsInput | $Enums.PurchaseSource
   ticketTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethodId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -967,6 +1000,7 @@ export type TicketPurchaseCreateManyTicketTypeInput = {
   source?: $Enums.PurchaseSource
   paymentMethodId?: string | null
   organizationId: string
+  aiSummary?: string | null
   purchasedAt?: Date | string
   updatedAt?: Date | string
 }
@@ -981,6 +1015,7 @@ export type TicketPurchaseUpdateWithoutTicketTypeInput = {
   transactionRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   source?: Prisma.EnumPurchaseSourceFieldUpdateOperationsInput | $Enums.PurchaseSource
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paymentMethod?: Prisma.PaymentMethodUpdateOneWithoutPurchasesNestedInput
@@ -999,6 +1034,7 @@ export type TicketPurchaseUncheckedUpdateWithoutTicketTypeInput = {
   source?: Prisma.EnumPurchaseSourceFieldUpdateOperationsInput | $Enums.PurchaseSource
   paymentMethodId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1015,6 +1051,7 @@ export type TicketPurchaseUncheckedUpdateManyWithoutTicketTypeInput = {
   source?: Prisma.EnumPurchaseSourceFieldUpdateOperationsInput | $Enums.PurchaseSource
   paymentMethodId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1031,6 +1068,7 @@ export type TicketPurchaseCreateManyPaymentMethodInput = {
   source?: $Enums.PurchaseSource
   ticketTypeId: string
   organizationId: string
+  aiSummary?: string | null
   purchasedAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1045,6 +1083,7 @@ export type TicketPurchaseUpdateWithoutPaymentMethodInput = {
   transactionRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   source?: Prisma.EnumPurchaseSourceFieldUpdateOperationsInput | $Enums.PurchaseSource
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ticketType?: Prisma.TicketTypeUpdateOneRequiredWithoutPurchasesNestedInput
@@ -1063,6 +1102,7 @@ export type TicketPurchaseUncheckedUpdateWithoutPaymentMethodInput = {
   source?: Prisma.EnumPurchaseSourceFieldUpdateOperationsInput | $Enums.PurchaseSource
   ticketTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1079,6 +1119,7 @@ export type TicketPurchaseUncheckedUpdateManyWithoutPaymentMethodInput = {
   source?: Prisma.EnumPurchaseSourceFieldUpdateOperationsInput | $Enums.PurchaseSource
   ticketTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
+  aiSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1098,6 +1139,7 @@ export type TicketPurchaseSelect<ExtArgs extends runtime.Types.Extensions.Intern
   ticketTypeId?: boolean
   paymentMethodId?: boolean
   organizationId?: boolean
+  aiSummary?: boolean
   purchasedAt?: boolean
   updatedAt?: boolean
   ticketType?: boolean | Prisma.TicketTypeDefaultArgs<ExtArgs>
@@ -1118,6 +1160,7 @@ export type TicketPurchaseSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   ticketTypeId?: boolean
   paymentMethodId?: boolean
   organizationId?: boolean
+  aiSummary?: boolean
   purchasedAt?: boolean
   updatedAt?: boolean
   ticketType?: boolean | Prisma.TicketTypeDefaultArgs<ExtArgs>
@@ -1138,6 +1181,7 @@ export type TicketPurchaseSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   ticketTypeId?: boolean
   paymentMethodId?: boolean
   organizationId?: boolean
+  aiSummary?: boolean
   purchasedAt?: boolean
   updatedAt?: boolean
   ticketType?: boolean | Prisma.TicketTypeDefaultArgs<ExtArgs>
@@ -1158,11 +1202,12 @@ export type TicketPurchaseSelectScalar = {
   ticketTypeId?: boolean
   paymentMethodId?: boolean
   organizationId?: boolean
+  aiSummary?: boolean
   purchasedAt?: boolean
   updatedAt?: boolean
 }
 
-export type TicketPurchaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "buyerName" | "buyerPhone" | "buyerEmail" | "amount" | "status" | "transactionRef" | "notes" | "source" | "ticketTypeId" | "paymentMethodId" | "organizationId" | "purchasedAt" | "updatedAt", ExtArgs["result"]["ticketPurchase"]>
+export type TicketPurchaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "buyerName" | "buyerPhone" | "buyerEmail" | "amount" | "status" | "transactionRef" | "notes" | "source" | "ticketTypeId" | "paymentMethodId" | "organizationId" | "aiSummary" | "purchasedAt" | "updatedAt", ExtArgs["result"]["ticketPurchase"]>
 export type TicketPurchaseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   ticketType?: boolean | Prisma.TicketTypeDefaultArgs<ExtArgs>
   paymentMethod?: boolean | Prisma.TicketPurchase$paymentMethodArgs<ExtArgs>
@@ -1199,6 +1244,7 @@ export type $TicketPurchasePayload<ExtArgs extends runtime.Types.Extensions.Inte
     ticketTypeId: string
     paymentMethodId: string | null
     organizationId: string
+    aiSummary: string | null
     purchasedAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["ticketPurchase"]>
@@ -1639,6 +1685,7 @@ export interface TicketPurchaseFieldRefs {
   readonly ticketTypeId: Prisma.FieldRef<"TicketPurchase", 'String'>
   readonly paymentMethodId: Prisma.FieldRef<"TicketPurchase", 'String'>
   readonly organizationId: Prisma.FieldRef<"TicketPurchase", 'String'>
+  readonly aiSummary: Prisma.FieldRef<"TicketPurchase", 'String'>
   readonly purchasedAt: Prisma.FieldRef<"TicketPurchase", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"TicketPurchase", 'DateTime'>
 }

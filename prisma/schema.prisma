@@ -81,6 +81,7 @@ model Organization {
   ticketTypes    TicketType[]
   paymentMethods PaymentMethod[]
   purchases      TicketPurchase[]
+  consultations  Consultation[]
 }
 
 model TicketType {
@@ -139,6 +140,7 @@ model TicketPurchase {
   paymentMethod   PaymentMethod? @relation(fields: [paymentMethodId], references: [id])
   organizationId  String
   organization    Organization   @relation(fields: [organizationId], references: [id])
+  aiSummary       String?
   purchasedAt     DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
 
@@ -160,4 +162,38 @@ enum PurchaseStatus {
 enum PurchaseSource {
   ONLINE
   WALKIN
+}
+
+model Consultation {
+  id               String               @id @default(cuid())
+  patientName      String
+  patientAge       Int
+  symptoms         String
+  chatHistory      Json
+  aiSummary        String?
+  aiRecommendation String?
+  severity         ConsultationSeverity @default(MILD)
+  status           ConsultationStatus   @default(PENDING)
+  organizationId   String
+  organization     Organization         @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
+
+  @@index([organizationId])
+  @@index([status])
+  @@index([severity])
+  @@index([createdAt])
+}
+
+enum ConsultationSeverity {
+  CRITICAL
+  MODERATE
+  MILD
+}
+
+enum ConsultationStatus {
+  PENDING
+  IN_REVIEW
+  APPROVED
+  REFERRED
 }

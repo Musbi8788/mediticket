@@ -15,7 +15,8 @@
       "Bash(mkdir -p \"/c/Users/Musbi Dev/Documents/mediticket/app/\\(dashboard\\)/payment-methods\")",
       "Bash(mkdir -p \"/c/Users/Musbi Dev/Documents/mediticket/app/\\(dashboard\\)/purchase-history\")",
       "Bash(mkdir -p \"/c/Users/Musbi Dev/Documents/mediticket/app/\\(dashboard\\)/settings\")",
-      "Bash(node -e \"const s = require\\('/c/Users/Musbi Dev/Documents/mediticket/node_modules/@heroui/styles/dist/index.js'\\); const bv = s.buttonVariants; if\\(bv\\) { const r = bv\\({variant: 'x'}\\); console.log\\(Object.keys\\(bv.variantsClassNames || bv._def?.variants || {}\\)\\); } else console.log\\('not found'\\)\")"
+      "Bash(node -e \"const s = require\\('/c/Users/Musbi Dev/Documents/mediticket/node_modules/@heroui/styles/dist/index.js'\\); const bv = s.buttonVariants; if\\(bv\\) { const r = bv\\({variant: 'x'}\\); console.log\\(Object.keys\\(bv.variantsClassNames || bv._def?.variants || {}\\)\\); } else console.log\\('not found'\\)\")",
+      "WebFetch(domain:openrouter.ai)"
     ],
     "additionalDirectories": [
       "C:\\Users\\Musbi Dev\\Documents\\mediticket\\app\\api\\auth\\[...all",

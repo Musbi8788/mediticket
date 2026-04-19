@@ -391,7 +391,8 @@ export const ModelName = {
   Organization: 'Organization',
   TicketType: 'TicketType',
   PaymentMethod: 'PaymentMethod',
-  TicketPurchase: 'TicketPurchase'
+  TicketPurchase: 'TicketPurchase',
+  Consultation: 'Consultation'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -407,7 +408,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "organization" | "ticketType" | "paymentMethod" | "ticketPurchase"
+    modelProps: "user" | "session" | "account" | "verification" | "organization" | "ticketType" | "paymentMethod" | "ticketPurchase" | "consultation"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1003,6 +1004,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Consultation: {
+      payload: Prisma.$ConsultationPayload<ExtArgs>
+      fields: Prisma.ConsultationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ConsultationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConsultationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ConsultationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConsultationPayload>
+        }
+        findFirst: {
+          args: Prisma.ConsultationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConsultationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ConsultationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConsultationPayload>
+        }
+        findMany: {
+          args: Prisma.ConsultationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConsultationPayload>[]
+        }
+        create: {
+          args: Prisma.ConsultationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConsultationPayload>
+        }
+        createMany: {
+          args: Prisma.ConsultationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ConsultationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConsultationPayload>[]
+        }
+        delete: {
+          args: Prisma.ConsultationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConsultationPayload>
+        }
+        update: {
+          args: Prisma.ConsultationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConsultationPayload>
+        }
+        deleteMany: {
+          args: Prisma.ConsultationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ConsultationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ConsultationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConsultationPayload>[]
+        }
+        upsert: {
+          args: Prisma.ConsultationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConsultationPayload>
+        }
+        aggregate: {
+          args: Prisma.ConsultationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateConsultation>
+        }
+        groupBy: {
+          args: Prisma.ConsultationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ConsultationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ConsultationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ConsultationCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1156,11 +1231,30 @@ export const TicketPurchaseScalarFieldEnum = {
   ticketTypeId: 'ticketTypeId',
   paymentMethodId: 'paymentMethodId',
   organizationId: 'organizationId',
+  aiSummary: 'aiSummary',
   purchasedAt: 'purchasedAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type TicketPurchaseScalarFieldEnum = (typeof TicketPurchaseScalarFieldEnum)[keyof typeof TicketPurchaseScalarFieldEnum]
+
+
+export const ConsultationScalarFieldEnum = {
+  id: 'id',
+  patientName: 'patientName',
+  patientAge: 'patientAge',
+  symptoms: 'symptoms',
+  chatHistory: 'chatHistory',
+  aiSummary: 'aiSummary',
+  aiRecommendation: 'aiRecommendation',
+  severity: 'severity',
+  status: 'status',
+  organizationId: 'organizationId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ConsultationScalarFieldEnum = (typeof ConsultationScalarFieldEnum)[keyof typeof ConsultationScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1169,6 +1263,13 @@ export const SortOrder = {
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -1185,6 +1286,15 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
 
@@ -1297,6 +1407,62 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
+
+/**
+ * Reference to a field of type 'Json'
+ */
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+/**
+ * Reference to a field of type 'QueryMode'
+ */
+export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+/**
+ * Reference to a field of type 'ConsultationSeverity'
+ */
+export type EnumConsultationSeverityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ConsultationSeverity'>
+    
+
+
+/**
+ * Reference to a field of type 'ConsultationSeverity[]'
+ */
+export type ListEnumConsultationSeverityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ConsultationSeverity[]'>
+    
+
+
+/**
+ * Reference to a field of type 'ConsultationStatus'
+ */
+export type EnumConsultationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ConsultationStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'ConsultationStatus[]'
+ */
+export type ListEnumConsultationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ConsultationStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -1400,6 +1566,7 @@ export type GlobalOmitConfig = {
   ticketType?: Prisma.TicketTypeOmit
   paymentMethod?: Prisma.PaymentMethodOmit
   ticketPurchase?: Prisma.TicketPurchaseOmit
+  consultation?: Prisma.ConsultationOmit
 }
 
 /* Types for Logging */

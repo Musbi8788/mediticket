@@ -99,7 +99,7 @@ const METHOD_CONFIG: Record<
     ),
   },
   YONNA: {
-    label: "Yonna Forex",
+    label: "Yonna Finance",
     tagline: "Yonna Financial Solutions — Gambia",
     accountNumberLabel: "Wallet Number",
     accountNameLabel: "Account Name",

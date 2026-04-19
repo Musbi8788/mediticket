@@ -45,12 +45,15 @@ export default function LandingPage() {
               </svg>
               Book a Ticket on WhatsApp
             </a>
-            <button className="inline-flex items-center gap-2.5 border border-gray-300 text-gray-700 hover:border-[#1a9ea8] hover:text-[#1a9ea8] font-semibold rounded-xl px-5 py-3 text-sm transition-colors">
+            <Link
+              href="/book"
+              className="inline-flex items-center gap-2.5 border border-gray-300 text-gray-700 hover:border-[#1a9ea8] hover:text-[#1a9ea8] font-semibold rounded-xl px-5 py-3 text-sm transition-colors"
+            >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
               </svg>
               Chat with AI Assistant
-            </button>
+            </Link>
           </div>
         </div>
 
@@ -140,12 +143,12 @@ export default function LandingPage() {
               <p className="text-sm text-gray-500 leading-relaxed mb-5">
                 Tell our AI assistant your symptoms before you arrive. It organizes your info for the doctor, making your visit twice as effective.
               </p>
-              <button className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#1a9ea8] hover:underline">
+              <Link href="/book" className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#1a9ea8] hover:underline">
                 Start AI Consultation
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -368,9 +371,9 @@ export default function LandingPage() {
             >
               Book on WhatsApp
             </a>
-            <button className="inline-flex items-center gap-2 border-2 border-white text-white font-bold px-7 py-3 rounded-xl hover:bg-white/10 transition-colors">
+            <Link href="/book" className="inline-flex items-center gap-2 border-2 border-white text-white font-bold px-7 py-3 rounded-xl hover:bg-white/10 transition-colors">
               Try AI Assistant
-            </button>
+            </Link>
           </div>
         </div>
       </section>
