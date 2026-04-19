@@ -1,0 +1,9 @@
+.git
+.github
+.next
+node_modules
+.env*
+*.md
+images/
+.claude/
+prisma/lib/generated/
