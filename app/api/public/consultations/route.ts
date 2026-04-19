@@ -66,8 +66,8 @@ export async function POST(req: NextRequest) {
         const text: string = data.choices?.[0]?.message?.content ?? "";
 
         const sevMatch = text.match(/SEVERITY:\s*(CRITICAL|MODERATE|MILD)/i);
-        const sumMatch = text.match(/SUMMARY:\s*(.+?)(?=\nRECOMMENDATION:|$)/is);
-        const recMatch = text.match(/RECOMMENDATION:\s*(.+?)(?=\nSYMPTOMS:|$)/is);
+        const sumMatch = text.match(/SUMMARY:\s*([\s\S]+?)(?=\nRECOMMENDATION:|$)/i);
+        const recMatch = text.match(/RECOMMENDATION:\s*([\s\S]+?)(?=\nSYMPTOMS:|$)/i);
 
         if (sevMatch) severity = sevMatch[1].toUpperCase() as "CRITICAL" | "MODERATE" | "MILD";
         if (sumMatch) aiSummary = sumMatch[1].trim();
