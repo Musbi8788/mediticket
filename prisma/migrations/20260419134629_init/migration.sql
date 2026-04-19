@@ -2,7 +2,7 @@
 CREATE TYPE "PaymentType" AS ENUM ('WAVE', 'QMONEY', 'APS', 'AFRIMONEY', 'YONNA');
 
 -- CreateEnum
-CREATE TYPE "PurchaseStatus" AS ENUM ('PENDING', 'COMPLETED', 'FAILED', 'REFUNDED');
+CREATE TYPE "PurchaseStatus" AS ENUM ('PENDING', 'COMPLETED', 'FAILED', 'REFUNDED', 'USED');
 
 -- CreateTable
 CREATE TABLE "User" (
@@ -110,10 +110,12 @@ CREATE TABLE "TicketPurchase" (
     "id" TEXT NOT NULL,
     "buyerName" TEXT NOT NULL,
     "buyerPhone" TEXT NOT NULL,
+    "whatsappPhone" TEXT,
     "buyerEmail" TEXT,
     "amount" DECIMAL(10,2) NOT NULL,
     "status" "PurchaseStatus" NOT NULL DEFAULT 'PENDING',
     "transactionRef" TEXT,
+    "payoutSentAt" TIMESTAMP(3),
     "ticketTypeId" TEXT NOT NULL,
     "paymentMethodId" TEXT NOT NULL,
     "organizationId" TEXT NOT NULL,

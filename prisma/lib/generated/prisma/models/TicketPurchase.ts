@@ -38,10 +38,12 @@ export type TicketPurchaseMinAggregateOutputType = {
   id: string | null
   buyerName: string | null
   buyerPhone: string | null
+  whatsappPhone: string | null
   buyerEmail: string | null
   amount: runtime.Decimal | null
   status: $Enums.PurchaseStatus | null
   transactionRef: string | null
+  payoutSentAt: Date | null
   ticketTypeId: string | null
   paymentMethodId: string | null
   organizationId: string | null
@@ -53,10 +55,12 @@ export type TicketPurchaseMaxAggregateOutputType = {
   id: string | null
   buyerName: string | null
   buyerPhone: string | null
+  whatsappPhone: string | null
   buyerEmail: string | null
   amount: runtime.Decimal | null
   status: $Enums.PurchaseStatus | null
   transactionRef: string | null
+  payoutSentAt: Date | null
   ticketTypeId: string | null
   paymentMethodId: string | null
   organizationId: string | null
@@ -68,10 +72,12 @@ export type TicketPurchaseCountAggregateOutputType = {
   id: number
   buyerName: number
   buyerPhone: number
+  whatsappPhone: number
   buyerEmail: number
   amount: number
   status: number
   transactionRef: number
+  payoutSentAt: number
   ticketTypeId: number
   paymentMethodId: number
   organizationId: number
@@ -93,10 +99,12 @@ export type TicketPurchaseMinAggregateInputType = {
   id?: true
   buyerName?: true
   buyerPhone?: true
+  whatsappPhone?: true
   buyerEmail?: true
   amount?: true
   status?: true
   transactionRef?: true
+  payoutSentAt?: true
   ticketTypeId?: true
   paymentMethodId?: true
   organizationId?: true
@@ -108,10 +116,12 @@ export type TicketPurchaseMaxAggregateInputType = {
   id?: true
   buyerName?: true
   buyerPhone?: true
+  whatsappPhone?: true
   buyerEmail?: true
   amount?: true
   status?: true
   transactionRef?: true
+  payoutSentAt?: true
   ticketTypeId?: true
   paymentMethodId?: true
   organizationId?: true
@@ -123,10 +133,12 @@ export type TicketPurchaseCountAggregateInputType = {
   id?: true
   buyerName?: true
   buyerPhone?: true
+  whatsappPhone?: true
   buyerEmail?: true
   amount?: true
   status?: true
   transactionRef?: true
+  payoutSentAt?: true
   ticketTypeId?: true
   paymentMethodId?: true
   organizationId?: true
@@ -225,10 +237,12 @@ export type TicketPurchaseGroupByOutputType = {
   id: string
   buyerName: string
   buyerPhone: string
+  whatsappPhone: string | null
   buyerEmail: string | null
   amount: runtime.Decimal
   status: $Enums.PurchaseStatus
   transactionRef: string | null
+  payoutSentAt: Date | null
   ticketTypeId: string
   paymentMethodId: string
   organizationId: string
@@ -263,10 +277,12 @@ export type TicketPurchaseWhereInput = {
   id?: Prisma.StringFilter<"TicketPurchase"> | string
   buyerName?: Prisma.StringFilter<"TicketPurchase"> | string
   buyerPhone?: Prisma.StringFilter<"TicketPurchase"> | string
+  whatsappPhone?: Prisma.StringNullableFilter<"TicketPurchase"> | string | null
   buyerEmail?: Prisma.StringNullableFilter<"TicketPurchase"> | string | null
   amount?: Prisma.DecimalFilter<"TicketPurchase"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumPurchaseStatusFilter<"TicketPurchase"> | $Enums.PurchaseStatus
   transactionRef?: Prisma.StringNullableFilter<"TicketPurchase"> | string | null
+  payoutSentAt?: Prisma.DateTimeNullableFilter<"TicketPurchase"> | Date | string | null
   ticketTypeId?: Prisma.StringFilter<"TicketPurchase"> | string
   paymentMethodId?: Prisma.StringFilter<"TicketPurchase"> | string
   organizationId?: Prisma.StringFilter<"TicketPurchase"> | string
@@ -281,10 +297,12 @@ export type TicketPurchaseOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   buyerName?: Prisma.SortOrder
   buyerPhone?: Prisma.SortOrder
+  whatsappPhone?: Prisma.SortOrderInput | Prisma.SortOrder
   buyerEmail?: Prisma.SortOrderInput | Prisma.SortOrder
   amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
   transactionRef?: Prisma.SortOrderInput | Prisma.SortOrder
+  payoutSentAt?: Prisma.SortOrderInput | Prisma.SortOrder
   ticketTypeId?: Prisma.SortOrder
   paymentMethodId?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
@@ -303,9 +321,11 @@ export type TicketPurchaseWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.TicketPurchaseWhereInput | Prisma.TicketPurchaseWhereInput[]
   buyerName?: Prisma.StringFilter<"TicketPurchase"> | string
   buyerPhone?: Prisma.StringFilter<"TicketPurchase"> | string
+  whatsappPhone?: Prisma.StringNullableFilter<"TicketPurchase"> | string | null
   buyerEmail?: Prisma.StringNullableFilter<"TicketPurchase"> | string | null
   amount?: Prisma.DecimalFilter<"TicketPurchase"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumPurchaseStatusFilter<"TicketPurchase"> | $Enums.PurchaseStatus
+  payoutSentAt?: Prisma.DateTimeNullableFilter<"TicketPurchase"> | Date | string | null
   ticketTypeId?: Prisma.StringFilter<"TicketPurchase"> | string
   paymentMethodId?: Prisma.StringFilter<"TicketPurchase"> | string
   organizationId?: Prisma.StringFilter<"TicketPurchase"> | string
@@ -320,10 +340,12 @@ export type TicketPurchaseOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   buyerName?: Prisma.SortOrder
   buyerPhone?: Prisma.SortOrder
+  whatsappPhone?: Prisma.SortOrderInput | Prisma.SortOrder
   buyerEmail?: Prisma.SortOrderInput | Prisma.SortOrder
   amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
   transactionRef?: Prisma.SortOrderInput | Prisma.SortOrder
+  payoutSentAt?: Prisma.SortOrderInput | Prisma.SortOrder
   ticketTypeId?: Prisma.SortOrder
   paymentMethodId?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
@@ -343,10 +365,12 @@ export type TicketPurchaseScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"TicketPurchase"> | string
   buyerName?: Prisma.StringWithAggregatesFilter<"TicketPurchase"> | string
   buyerPhone?: Prisma.StringWithAggregatesFilter<"TicketPurchase"> | string
+  whatsappPhone?: Prisma.StringNullableWithAggregatesFilter<"TicketPurchase"> | string | null
   buyerEmail?: Prisma.StringNullableWithAggregatesFilter<"TicketPurchase"> | string | null
   amount?: Prisma.DecimalWithAggregatesFilter<"TicketPurchase"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumPurchaseStatusWithAggregatesFilter<"TicketPurchase"> | $Enums.PurchaseStatus
   transactionRef?: Prisma.StringNullableWithAggregatesFilter<"TicketPurchase"> | string | null
+  payoutSentAt?: Prisma.DateTimeNullableWithAggregatesFilter<"TicketPurchase"> | Date | string | null
   ticketTypeId?: Prisma.StringWithAggregatesFilter<"TicketPurchase"> | string
   paymentMethodId?: Prisma.StringWithAggregatesFilter<"TicketPurchase"> | string
   organizationId?: Prisma.StringWithAggregatesFilter<"TicketPurchase"> | string
@@ -358,10 +382,12 @@ export type TicketPurchaseCreateInput = {
   id?: string
   buyerName: string
   buyerPhone: string
+  whatsappPhone?: string | null
   buyerEmail?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.PurchaseStatus
   transactionRef?: string | null
+  payoutSentAt?: Date | string | null
   purchasedAt?: Date | string
   updatedAt?: Date | string
   ticketType: Prisma.TicketTypeCreateNestedOneWithoutPurchasesInput
@@ -373,10 +399,12 @@ export type TicketPurchaseUncheckedCreateInput = {
   id?: string
   buyerName: string
   buyerPhone: string
+  whatsappPhone?: string | null
   buyerEmail?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.PurchaseStatus
   transactionRef?: string | null
+  payoutSentAt?: Date | string | null
   ticketTypeId: string
   paymentMethodId: string
   organizationId: string
@@ -388,10 +416,12 @@ export type TicketPurchaseUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   buyerName?: Prisma.StringFieldUpdateOperationsInput | string
   buyerPhone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsappPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   buyerEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumPurchaseStatusFieldUpdateOperationsInput | $Enums.PurchaseStatus
   transactionRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  payoutSentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ticketType?: Prisma.TicketTypeUpdateOneRequiredWithoutPurchasesNestedInput
@@ -403,10 +433,12 @@ export type TicketPurchaseUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   buyerName?: Prisma.StringFieldUpdateOperationsInput | string
   buyerPhone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsappPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   buyerEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumPurchaseStatusFieldUpdateOperationsInput | $Enums.PurchaseStatus
   transactionRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  payoutSentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ticketTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethodId?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -418,10 +450,12 @@ export type TicketPurchaseCreateManyInput = {
   id?: string
   buyerName: string
   buyerPhone: string
+  whatsappPhone?: string | null
   buyerEmail?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.PurchaseStatus
   transactionRef?: string | null
+  payoutSentAt?: Date | string | null
   ticketTypeId: string
   paymentMethodId: string
   organizationId: string
@@ -433,10 +467,12 @@ export type TicketPurchaseUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   buyerName?: Prisma.StringFieldUpdateOperationsInput | string
   buyerPhone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsappPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   buyerEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumPurchaseStatusFieldUpdateOperationsInput | $Enums.PurchaseStatus
   transactionRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  payoutSentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -445,10 +481,12 @@ export type TicketPurchaseUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   buyerName?: Prisma.StringFieldUpdateOperationsInput | string
   buyerPhone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsappPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   buyerEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumPurchaseStatusFieldUpdateOperationsInput | $Enums.PurchaseStatus
   transactionRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  payoutSentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ticketTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethodId?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -470,10 +508,12 @@ export type TicketPurchaseCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   buyerName?: Prisma.SortOrder
   buyerPhone?: Prisma.SortOrder
+  whatsappPhone?: Prisma.SortOrder
   buyerEmail?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
   transactionRef?: Prisma.SortOrder
+  payoutSentAt?: Prisma.SortOrder
   ticketTypeId?: Prisma.SortOrder
   paymentMethodId?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
@@ -489,10 +529,12 @@ export type TicketPurchaseMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   buyerName?: Prisma.SortOrder
   buyerPhone?: Prisma.SortOrder
+  whatsappPhone?: Prisma.SortOrder
   buyerEmail?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
   transactionRef?: Prisma.SortOrder
+  payoutSentAt?: Prisma.SortOrder
   ticketTypeId?: Prisma.SortOrder
   paymentMethodId?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
@@ -504,10 +546,12 @@ export type TicketPurchaseMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   buyerName?: Prisma.SortOrder
   buyerPhone?: Prisma.SortOrder
+  whatsappPhone?: Prisma.SortOrder
   buyerEmail?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
   transactionRef?: Prisma.SortOrder
+  payoutSentAt?: Prisma.SortOrder
   ticketTypeId?: Prisma.SortOrder
   paymentMethodId?: Prisma.SortOrder
   organizationId?: Prisma.SortOrder
@@ -653,10 +697,12 @@ export type TicketPurchaseCreateWithoutOrganizationInput = {
   id?: string
   buyerName: string
   buyerPhone: string
+  whatsappPhone?: string | null
   buyerEmail?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.PurchaseStatus
   transactionRef?: string | null
+  payoutSentAt?: Date | string | null
   purchasedAt?: Date | string
   updatedAt?: Date | string
   ticketType: Prisma.TicketTypeCreateNestedOneWithoutPurchasesInput
@@ -667,10 +713,12 @@ export type TicketPurchaseUncheckedCreateWithoutOrganizationInput = {
   id?: string
   buyerName: string
   buyerPhone: string
+  whatsappPhone?: string | null
   buyerEmail?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.PurchaseStatus
   transactionRef?: string | null
+  payoutSentAt?: Date | string | null
   ticketTypeId: string
   paymentMethodId: string
   purchasedAt?: Date | string
@@ -710,10 +758,12 @@ export type TicketPurchaseScalarWhereInput = {
   id?: Prisma.StringFilter<"TicketPurchase"> | string
   buyerName?: Prisma.StringFilter<"TicketPurchase"> | string
   buyerPhone?: Prisma.StringFilter<"TicketPurchase"> | string
+  whatsappPhone?: Prisma.StringNullableFilter<"TicketPurchase"> | string | null
   buyerEmail?: Prisma.StringNullableFilter<"TicketPurchase"> | string | null
   amount?: Prisma.DecimalFilter<"TicketPurchase"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumPurchaseStatusFilter<"TicketPurchase"> | $Enums.PurchaseStatus
   transactionRef?: Prisma.StringNullableFilter<"TicketPurchase"> | string | null
+  payoutSentAt?: Prisma.DateTimeNullableFilter<"TicketPurchase"> | Date | string | null
   ticketTypeId?: Prisma.StringFilter<"TicketPurchase"> | string
   paymentMethodId?: Prisma.StringFilter<"TicketPurchase"> | string
   organizationId?: Prisma.StringFilter<"TicketPurchase"> | string
@@ -725,10 +775,12 @@ export type TicketPurchaseCreateWithoutTicketTypeInput = {
   id?: string
   buyerName: string
   buyerPhone: string
+  whatsappPhone?: string | null
   buyerEmail?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.PurchaseStatus
   transactionRef?: string | null
+  payoutSentAt?: Date | string | null
   purchasedAt?: Date | string
   updatedAt?: Date | string
   paymentMethod: Prisma.PaymentMethodCreateNestedOneWithoutPurchasesInput
@@ -739,10 +791,12 @@ export type TicketPurchaseUncheckedCreateWithoutTicketTypeInput = {
   id?: string
   buyerName: string
   buyerPhone: string
+  whatsappPhone?: string | null
   buyerEmail?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.PurchaseStatus
   transactionRef?: string | null
+  payoutSentAt?: Date | string | null
   paymentMethodId: string
   organizationId: string
   purchasedAt?: Date | string
@@ -779,10 +833,12 @@ export type TicketPurchaseCreateWithoutPaymentMethodInput = {
   id?: string
   buyerName: string
   buyerPhone: string
+  whatsappPhone?: string | null
   buyerEmail?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.PurchaseStatus
   transactionRef?: string | null
+  payoutSentAt?: Date | string | null
   purchasedAt?: Date | string
   updatedAt?: Date | string
   ticketType: Prisma.TicketTypeCreateNestedOneWithoutPurchasesInput
@@ -793,10 +849,12 @@ export type TicketPurchaseUncheckedCreateWithoutPaymentMethodInput = {
   id?: string
   buyerName: string
   buyerPhone: string
+  whatsappPhone?: string | null
   buyerEmail?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.PurchaseStatus
   transactionRef?: string | null
+  payoutSentAt?: Date | string | null
   ticketTypeId: string
   organizationId: string
   purchasedAt?: Date | string
@@ -833,10 +891,12 @@ export type TicketPurchaseCreateManyOrganizationInput = {
   id?: string
   buyerName: string
   buyerPhone: string
+  whatsappPhone?: string | null
   buyerEmail?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.PurchaseStatus
   transactionRef?: string | null
+  payoutSentAt?: Date | string | null
   ticketTypeId: string
   paymentMethodId: string
   purchasedAt?: Date | string
@@ -847,10 +907,12 @@ export type TicketPurchaseUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   buyerName?: Prisma.StringFieldUpdateOperationsInput | string
   buyerPhone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsappPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   buyerEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumPurchaseStatusFieldUpdateOperationsInput | $Enums.PurchaseStatus
   transactionRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  payoutSentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ticketType?: Prisma.TicketTypeUpdateOneRequiredWithoutPurchasesNestedInput
@@ -861,10 +923,12 @@ export type TicketPurchaseUncheckedUpdateWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   buyerName?: Prisma.StringFieldUpdateOperationsInput | string
   buyerPhone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsappPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   buyerEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumPurchaseStatusFieldUpdateOperationsInput | $Enums.PurchaseStatus
   transactionRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  payoutSentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ticketTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethodId?: Prisma.StringFieldUpdateOperationsInput | string
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -875,10 +939,12 @@ export type TicketPurchaseUncheckedUpdateManyWithoutOrganizationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   buyerName?: Prisma.StringFieldUpdateOperationsInput | string
   buyerPhone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsappPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   buyerEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumPurchaseStatusFieldUpdateOperationsInput | $Enums.PurchaseStatus
   transactionRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  payoutSentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ticketTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethodId?: Prisma.StringFieldUpdateOperationsInput | string
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -889,10 +955,12 @@ export type TicketPurchaseCreateManyTicketTypeInput = {
   id?: string
   buyerName: string
   buyerPhone: string
+  whatsappPhone?: string | null
   buyerEmail?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.PurchaseStatus
   transactionRef?: string | null
+  payoutSentAt?: Date | string | null
   paymentMethodId: string
   organizationId: string
   purchasedAt?: Date | string
@@ -903,10 +971,12 @@ export type TicketPurchaseUpdateWithoutTicketTypeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   buyerName?: Prisma.StringFieldUpdateOperationsInput | string
   buyerPhone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsappPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   buyerEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumPurchaseStatusFieldUpdateOperationsInput | $Enums.PurchaseStatus
   transactionRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  payoutSentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paymentMethod?: Prisma.PaymentMethodUpdateOneRequiredWithoutPurchasesNestedInput
@@ -917,10 +987,12 @@ export type TicketPurchaseUncheckedUpdateWithoutTicketTypeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   buyerName?: Prisma.StringFieldUpdateOperationsInput | string
   buyerPhone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsappPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   buyerEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumPurchaseStatusFieldUpdateOperationsInput | $Enums.PurchaseStatus
   transactionRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  payoutSentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paymentMethodId?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -931,10 +1003,12 @@ export type TicketPurchaseUncheckedUpdateManyWithoutTicketTypeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   buyerName?: Prisma.StringFieldUpdateOperationsInput | string
   buyerPhone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsappPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   buyerEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumPurchaseStatusFieldUpdateOperationsInput | $Enums.PurchaseStatus
   transactionRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  payoutSentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paymentMethodId?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -945,10 +1019,12 @@ export type TicketPurchaseCreateManyPaymentMethodInput = {
   id?: string
   buyerName: string
   buyerPhone: string
+  whatsappPhone?: string | null
   buyerEmail?: string | null
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.PurchaseStatus
   transactionRef?: string | null
+  payoutSentAt?: Date | string | null
   ticketTypeId: string
   organizationId: string
   purchasedAt?: Date | string
@@ -959,10 +1035,12 @@ export type TicketPurchaseUpdateWithoutPaymentMethodInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   buyerName?: Prisma.StringFieldUpdateOperationsInput | string
   buyerPhone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsappPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   buyerEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumPurchaseStatusFieldUpdateOperationsInput | $Enums.PurchaseStatus
   transactionRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  payoutSentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ticketType?: Prisma.TicketTypeUpdateOneRequiredWithoutPurchasesNestedInput
@@ -973,10 +1051,12 @@ export type TicketPurchaseUncheckedUpdateWithoutPaymentMethodInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   buyerName?: Prisma.StringFieldUpdateOperationsInput | string
   buyerPhone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsappPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   buyerEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumPurchaseStatusFieldUpdateOperationsInput | $Enums.PurchaseStatus
   transactionRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  payoutSentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ticketTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -987,10 +1067,12 @@ export type TicketPurchaseUncheckedUpdateManyWithoutPaymentMethodInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   buyerName?: Prisma.StringFieldUpdateOperationsInput | string
   buyerPhone?: Prisma.StringFieldUpdateOperationsInput | string
+  whatsappPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   buyerEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumPurchaseStatusFieldUpdateOperationsInput | $Enums.PurchaseStatus
   transactionRef?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  payoutSentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   ticketTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   organizationId?: Prisma.StringFieldUpdateOperationsInput | string
   purchasedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1003,10 +1085,12 @@ export type TicketPurchaseSelect<ExtArgs extends runtime.Types.Extensions.Intern
   id?: boolean
   buyerName?: boolean
   buyerPhone?: boolean
+  whatsappPhone?: boolean
   buyerEmail?: boolean
   amount?: boolean
   status?: boolean
   transactionRef?: boolean
+  payoutSentAt?: boolean
   ticketTypeId?: boolean
   paymentMethodId?: boolean
   organizationId?: boolean
@@ -1021,10 +1105,12 @@ export type TicketPurchaseSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   id?: boolean
   buyerName?: boolean
   buyerPhone?: boolean
+  whatsappPhone?: boolean
   buyerEmail?: boolean
   amount?: boolean
   status?: boolean
   transactionRef?: boolean
+  payoutSentAt?: boolean
   ticketTypeId?: boolean
   paymentMethodId?: boolean
   organizationId?: boolean
@@ -1039,10 +1125,12 @@ export type TicketPurchaseSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   id?: boolean
   buyerName?: boolean
   buyerPhone?: boolean
+  whatsappPhone?: boolean
   buyerEmail?: boolean
   amount?: boolean
   status?: boolean
   transactionRef?: boolean
+  payoutSentAt?: boolean
   ticketTypeId?: boolean
   paymentMethodId?: boolean
   organizationId?: boolean
@@ -1057,10 +1145,12 @@ export type TicketPurchaseSelectScalar = {
   id?: boolean
   buyerName?: boolean
   buyerPhone?: boolean
+  whatsappPhone?: boolean
   buyerEmail?: boolean
   amount?: boolean
   status?: boolean
   transactionRef?: boolean
+  payoutSentAt?: boolean
   ticketTypeId?: boolean
   paymentMethodId?: boolean
   organizationId?: boolean
@@ -1068,7 +1158,7 @@ export type TicketPurchaseSelectScalar = {
   updatedAt?: boolean
 }
 
-export type TicketPurchaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "buyerName" | "buyerPhone" | "buyerEmail" | "amount" | "status" | "transactionRef" | "ticketTypeId" | "paymentMethodId" | "organizationId" | "purchasedAt" | "updatedAt", ExtArgs["result"]["ticketPurchase"]>
+export type TicketPurchaseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "buyerName" | "buyerPhone" | "whatsappPhone" | "buyerEmail" | "amount" | "status" | "transactionRef" | "payoutSentAt" | "ticketTypeId" | "paymentMethodId" | "organizationId" | "purchasedAt" | "updatedAt", ExtArgs["result"]["ticketPurchase"]>
 export type TicketPurchaseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   ticketType?: boolean | Prisma.TicketTypeDefaultArgs<ExtArgs>
   paymentMethod?: boolean | Prisma.PaymentMethodDefaultArgs<ExtArgs>
@@ -1096,10 +1186,12 @@ export type $TicketPurchasePayload<ExtArgs extends runtime.Types.Extensions.Inte
     id: string
     buyerName: string
     buyerPhone: string
+    whatsappPhone: string | null
     buyerEmail: string | null
     amount: runtime.Decimal
     status: $Enums.PurchaseStatus
     transactionRef: string | null
+    payoutSentAt: Date | null
     ticketTypeId: string
     paymentMethodId: string
     organizationId: string
@@ -1534,10 +1626,12 @@ export interface TicketPurchaseFieldRefs {
   readonly id: Prisma.FieldRef<"TicketPurchase", 'String'>
   readonly buyerName: Prisma.FieldRef<"TicketPurchase", 'String'>
   readonly buyerPhone: Prisma.FieldRef<"TicketPurchase", 'String'>
+  readonly whatsappPhone: Prisma.FieldRef<"TicketPurchase", 'String'>
   readonly buyerEmail: Prisma.FieldRef<"TicketPurchase", 'String'>
   readonly amount: Prisma.FieldRef<"TicketPurchase", 'Decimal'>
   readonly status: Prisma.FieldRef<"TicketPurchase", 'PurchaseStatus'>
   readonly transactionRef: Prisma.FieldRef<"TicketPurchase", 'String'>
+  readonly payoutSentAt: Prisma.FieldRef<"TicketPurchase", 'DateTime'>
   readonly ticketTypeId: Prisma.FieldRef<"TicketPurchase", 'String'>
   readonly paymentMethodId: Prisma.FieldRef<"TicketPurchase", 'String'>
   readonly organizationId: Prisma.FieldRef<"TicketPurchase", 'String'>

@@ -127,10 +127,12 @@ model TicketPurchase {
   id              String         @id @default(cuid())
   buyerName       String
   buyerPhone      String
+  whatsappPhone   String?
   buyerEmail      String?
   amount          Decimal        @db.Decimal(10, 2)
   status          PurchaseStatus @default(PENDING)
   transactionRef  String?        @unique
+  payoutSentAt    DateTime?
   ticketTypeId    String
   ticketType      TicketType     @relation(fields: [ticketTypeId], references: [id])
   paymentMethodId String
@@ -152,4 +154,5 @@ enum PurchaseStatus {
   COMPLETED
   FAILED
   REFUNDED
+  USED
 }

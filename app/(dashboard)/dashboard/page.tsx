@@ -56,7 +56,7 @@ export default function DashboardPage() {
   }, []);
 
   const formatRevenue = (amount: number) =>
-    `D ${amount.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    `D ${amount?.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
   return (
     <div className="max-w-6xl mx-auto">
@@ -79,7 +79,7 @@ export default function DashboardPage() {
                 <StatsSkeleton />
               ) : (
                 <p className="text-4xl font-extrabold text-gray-900 tracking-tight">
-                  {stats?.totalTickets.toLocaleString() ?? "0"}
+                  {stats?.totalTickets?.toLocaleString() ?? "0"}
                 </p>
               )}
             </div>
@@ -141,7 +141,7 @@ export default function DashboardPage() {
             <StatsSkeleton />
           ) : (
             <p className="text-4xl font-extrabold text-gray-900 tracking-tight">
-              {stats?.activeAdmissions.toLocaleString() ?? "0"}
+              {stats?.activeAdmissions?.toLocaleString() ?? "0"}
             </p>
           )}
           <p className="text-sm text-[#1a7f8a] font-medium">Awaiting processing</p>
@@ -234,7 +234,7 @@ export default function DashboardPage() {
                   <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </div>
-            ) : !stats?.recentActivity.length ? (
+            ) : !stats?.recentActivity?.length ? (
               <div className="py-10 text-center text-sm text-gray-400">No recent activity yet.</div>
             ) : (
               stats.recentActivity.map((row, i) => (
