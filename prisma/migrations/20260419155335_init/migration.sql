@@ -4,6 +4,15 @@ CREATE TYPE "PaymentType" AS ENUM ('WAVE', 'QMONEY', 'APS', 'AFRIMONEY', 'YONNA'
 -- CreateEnum
 CREATE TYPE "PurchaseStatus" AS ENUM ('PENDING', 'COMPLETED', 'FAILED', 'REFUNDED');
 
+-- CreateEnum
+CREATE TYPE "PurchaseSource" AS ENUM ('ONLINE', 'WALKIN');
+
+-- CreateEnum
+CREATE TYPE "ConsultationSeverity" AS ENUM ('CRITICAL', 'MODERATE', 'MILD');
+
+-- CreateEnum
+CREATE TYPE "ConsultationStatus" AS ENUM ('PENDING', 'IN_REVIEW', 'APPROVED', 'REFERRED');
+
 -- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
@@ -114,13 +123,36 @@ CREATE TABLE "TicketPurchase" (
     "amount" DECIMAL(10,2) NOT NULL,
     "status" "PurchaseStatus" NOT NULL DEFAULT 'PENDING',
     "transactionRef" TEXT,
+    "notes" TEXT,
+    "source" "PurchaseSource" NOT NULL DEFAULT 'ONLINE',
     "ticketTypeId" TEXT NOT NULL,
-    "paymentMethodId" TEXT NOT NULL,
+    "paymentMethodId" TEXT,
     "organizationId" TEXT NOT NULL,
+    "aiSummary" TEXT,
     "purchasedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "TicketPurchase_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Consultation" (
+    "id" TEXT NOT NULL,
+    "patientName" TEXT NOT NULL,
+    "patientAge" INTEGER NOT NULL,
+    "patientPhone" TEXT,
+    "patientAddress" TEXT,
+    "symptoms" TEXT NOT NULL,
+    "chatHistory" JSONB NOT NULL,
+    "aiSummary" TEXT,
+    "aiRecommendation" TEXT,
+    "severity" "ConsultationSeverity" NOT NULL DEFAULT 'MILD',
+    "status" "ConsultationStatus" NOT NULL DEFAULT 'PENDING',
+    "organizationId" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Consultation_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -168,6 +200,21 @@ CREATE INDEX "TicketPurchase_status_idx" ON "TicketPurchase"("status");
 -- CreateIndex
 CREATE INDEX "TicketPurchase_purchasedAt_idx" ON "TicketPurchase"("purchasedAt");
 
+-- CreateIndex
+CREATE INDEX "TicketPurchase_source_idx" ON "TicketPurchase"("source");
+
+-- CreateIndex
+CREATE INDEX "Consultation_organizationId_idx" ON "Consultation"("organizationId");
+
+-- CreateIndex
+CREATE INDEX "Consultation_status_idx" ON "Consultation"("status");
+
+-- CreateIndex
+CREATE INDEX "Consultation_severity_idx" ON "Consultation"("severity");
+
+-- CreateIndex
+CREATE INDEX "Consultation_createdAt_idx" ON "Consultation"("createdAt");
+
 -- AddForeignKey
 ALTER TABLE "User" ADD CONSTRAINT "User_organizationId_fkey" FOREIGN KEY ("organizationId") REFERENCES "Organization"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
@@ -187,7 +234,10 @@ ALTER TABLE "PaymentMethod" ADD CONSTRAINT "PaymentMethod_organizationId_fkey" F
 ALTER TABLE "TicketPurchase" ADD CONSTRAINT "TicketPurchase_ticketTypeId_fkey" FOREIGN KEY ("ticketTypeId") REFERENCES "TicketType"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "TicketPurchase" ADD CONSTRAINT "TicketPurchase_paymentMethodId_fkey" FOREIGN KEY ("paymentMethodId") REFERENCES "PaymentMethod"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "TicketPurchase" ADD CONSTRAINT "TicketPurchase_paymentMethodId_fkey" FOREIGN KEY ("paymentMethodId") REFERENCES "PaymentMethod"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "TicketPurchase" ADD CONSTRAINT "TicketPurchase_organizationId_fkey" FOREIGN KEY ("organizationId") REFERENCES "Organization"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Consultation" ADD CONSTRAINT "Consultation_organizationId_fkey" FOREIGN KEY ("organizationId") REFERENCES "Organization"("id") ON DELETE CASCADE ON UPDATE CASCADE;
