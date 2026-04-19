@@ -106,8 +106,8 @@ export async function POST(req: NextRequest) {
       status: "PENDING",
       source: "WALKIN",
       notes: notes?.trim() || null,
-      ticketTypeId,
-      organizationId: orgId,
+      ticketType: { connect: { id: ticketTypeId } },
+      organization: { connect: { id: orgId } },
     },
     include: { ticketType: { select: { name: true } } },
   });
@@ -137,7 +137,7 @@ export async function PATCH(req: NextRequest) {
   if (!allowed.includes(status)) return NextResponse.json({ error: "Invalid status." }, { status: 400 });
 
   const updated = await prisma.ticketPurchase.updateMany({
-    where: { id, organizationId: orgId, source: "WALKIN" },
+    where: { id, organizationId: orgId },
     data: { status },
   });
 
