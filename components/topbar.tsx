@@ -28,8 +28,9 @@ export function Topbar({ onMenuClick }: TopbarProps) {
         </svg>
       </button>
 
-      {/* Logo */}
+      {/* Brand — desktop full logo, mobile compact center text */}
       <span className="hidden md:block text-[#1a7f8a] font-bold text-xl mr-2 w-44 flex-shrink-0">Medic Ticket</span>
+      <span className="md:hidden flex-1 text-center text-sm font-bold text-gray-800 tracking-tight">MediTicket</span>
 
       {/* Search — hidden on mobile */}
       <div className="hidden md:flex flex-1 max-w-xl relative">

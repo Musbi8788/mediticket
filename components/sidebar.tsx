@@ -202,20 +202,12 @@ export function Sidebar({ open, onClose }: SidebarProps) {
   );
 
   return (
-    <>
-      {/* Desktop sidebar — always visible */}
-      <aside className="hidden md:flex w-60 min-h-screen bg-white border-r border-gray-100 flex-col flex-shrink-0 relative">
-        {sidebarContent}
-      </aside>
-
-      {/* Mobile sidebar — slides in as overlay */}
-      <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-100 flex flex-col flex-shrink-0 relative transition-transform duration-300 ease-in-out md:hidden ${
-          open ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
-        {sidebarContent}
-      </aside>
-    </>
+    <aside
+      className={`fixed inset-y-0 left-0 z-50 w-60 bg-white border-r border-gray-100 flex flex-col transition-transform duration-300 ease-in-out ${
+        open ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+      }`}
+    >
+      {sidebarContent}
+    </aside>
   );
 }

@@ -10,15 +10,20 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   return (
     <DashboardProvider>
-      <div className="flex min-h-screen bg-[#f0f4f5] overflow-x-hidden w-full">
+      <div className="min-h-screen bg-[#f0f4f5]">
+        {/* Mobile backdrop */}
         {sidebarOpen && (
           <div
             className="fixed inset-0 z-40 bg-black/50 md:hidden"
             onClick={() => setSidebarOpen(false)}
           />
         )}
+
+        {/* Sidebar is always fixed — never takes layout space */}
         <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-        <div className="flex-1 flex flex-col min-w-0 w-full md:w-auto">
+
+        {/* Main area — offset by sidebar width only on desktop */}
+        <div className="md:ml-60 flex flex-col min-h-screen">
           <Topbar onMenuClick={() => setSidebarOpen(true)} />
           <main className="flex-1 p-4 md:p-8 overflow-auto">{children}</main>
         </div>
